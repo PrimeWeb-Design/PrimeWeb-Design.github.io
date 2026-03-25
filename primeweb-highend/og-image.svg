@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c12"/>
+      <stop offset="100%" stop-color="#1a2435"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a88445"/>
+      <stop offset="50%" stop-color="#d6b06a"/>
+      <stop offset="100%" stop-color="#f1d89c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="20%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#d6b06a" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#d6b06a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- Gold accent line top -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#gold)"/>
+  <!-- Logo P -->
+  <rect x="72" y="72" width="88" height="88" rx="20" fill="none" stroke="#d6b06a" stroke-width="1.5"/>
+  <text x="116" y="137" text-anchor="middle" font-family="Georgia,serif" font-size="56" font-weight="700" fill="#f1d89c">P</text>
+  <!-- Brand name -->
+  <text x="180" y="108" font-family="Arial,sans-serif" font-size="28" font-weight="800" letter-spacing="4" fill="#ffffff">PRIME<tspan fill="#d6b06a">WEB</tspan></text>
+  <text x="180" y="140" font-family="Arial,sans-serif" font-size="13" letter-spacing="3" fill="#7a8a9a">DESIGN</text>
+  <!-- Main headline -->
+  <text x="72" y="290" font-family="Georgia,serif" font-size="54" font-weight="700" fill="#f8f4ea">Webseiten mit</text>
+  <text x="72" y="360" font-family="Georgia,serif" font-size="54" font-weight="700" fill="#f8f4ea">Luxuswirkung.</text>
+  <!-- Subline -->
+  <text x="72" y="430" font-family="Arial,sans-serif" font-size="22" fill="#8a9aaa">Premium Webdesign für anspruchsvolle Unternehmen</text>
+  <!-- URL -->
+  <text x="72" y="550" font-family="Arial,sans-serif" font-size="18" fill="#d6b06a" letter-spacing="1">primeweb-design.de</text>
+  <!-- Decorative gold line bottom -->
+  <rect x="72" y="490" width="120" height="2" fill="url(#gold)"/>
+</svg>
