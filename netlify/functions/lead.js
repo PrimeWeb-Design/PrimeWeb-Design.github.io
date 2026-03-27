@@ -1,5 +1,31 @@
 const https = require("https");
 
+function sendViaBrevo(apiKey, payload) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: "api.brevo.com",
+      path: "/v3/smtp/email",
+      method: "POST",
+      headers: {
+        "api-key": apiKey,
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    };
+    const req = https.request(options, (res) => {
+      let data = "";
+      res.on("data", (chunk) => (data += chunk));
+      res.on("end", () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) resolve(data);
+        else reject(new Error(`Brevo ${res.statusCode}: ${data}`));
+      });
+    });
+    req.on("error", reject);
+    req.write(payload);
+    req.end();
+  });
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
     return {
@@ -36,31 +62,20 @@ exports.handler = async (event) => {
     htmlContent: html,
   });
 
-  const options = {
-    hostname: "api.brevo.com",
-    path: "/v3/smtp/email",
-    method: "POST",
-    headers: {
-      "api-key":      process.env.BREVO_API_KEY,
-      "Content-Type": "application/json",
-      "Accept":       "application/json",
-    },
-  };
+  const keys = [process.env.BREVO_API_KEY, process.env.BREVO_API_KEY_2].filter(Boolean);
 
-  return new Promise((resolve) => {
-    const req = https.request(options, (res) => {
-      let data = "";
-      res.on("data", (chunk) => (data += chunk));
-      res.on("end", () => {
-        resolve({
-          statusCode: 200,
-          headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-          body: JSON.stringify({ ok: true }),
-        });
-      });
-    });
-    req.on("error", () => resolve({ statusCode: 500, body: "Mail failed" }));
-    req.write(payload);
-    req.end();
-  });
+  for (const key of keys) {
+    try {
+      await sendViaBrevo(key, payload);
+      return {
+        statusCode: 200,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        body: JSON.stringify({ ok: true }),
+      };
+    } catch (e) {
+      // try next key
+    }
+  }
+
+  return { statusCode: 500, body: "Mail failed" };
 };
