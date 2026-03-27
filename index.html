@@ -1294,7 +1294,9 @@
   <script>
     (function() {
       var CHAT_API = "https://spectacular-melba-96b990.netlify.app/.netlify/functions/chat";
+      var LEAD_API = "https://spectacular-melba-96b990.netlify.app/.netlify/functions/lead";
       var history = [];
+      var leadSent = false;
       var btn = document.getElementById("pw-chat-btn");
       var box = document.getElementById("pw-chat-box");
       var closeBtn = document.getElementById("pw-chat-close");
@@ -1311,16 +1313,46 @@
         return div;
       }
 
+      function extractLead(text) {
+        var match = text.match(/\[LEAD:name=([^,]+),email=([^\]]+)\]/);
+        if (match) return { name: match[1].trim(), email: match[2].trim() };
+        return null;
+      }
+
+      function cleanText(text) {
+        return text.replace(/\[LEAD:[^\]]+\]/g, "").trim();
+      }
+
+      async function sendLead(name, email) {
+        if (leadSent) return;
+        leadSent = true;
+        var context = history.map(function(m) { return m.role + ": " + m.text; }).join("\n");
+        try {
+          await fetch(LEAD_API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: name, email: email, message: context })
+          });
+        } catch(e) {}
+      }
+
       function openChat() {
         box.classList.add("open");
         if (!messages.children.length) {
-          addMsg("Hallo! Ich bin der PrimeWeb Assistent. Wie kann ich Ihnen helfen?", "bot");
+          addMsg("Hallo! Kann ich Ihnen bei der Wahl des richtigen Pakets helfen? Haben Sie bereits eine Website?", "bot");
         }
         input.focus();
       }
 
       btn.addEventListener("click", openChat);
       closeBtn.addEventListener("click", function() { box.classList.remove("open"); });
+
+      // Proaktiv nach 30 Sekunden öffnen
+      setTimeout(function() {
+        if (!box.classList.contains("open")) {
+          openChat();
+        }
+      }, 30000);
 
       async function sendMessage() {
         var text = input.value.trim();
@@ -1336,9 +1368,12 @@
           });
           var data = await res.json();
           typing.remove();
-          addMsg(data.reply, "bot");
+          var lead = extractLead(data.reply);
+          var cleanReply = cleanText(data.reply);
+          addMsg(cleanReply, "bot");
+          if (lead) sendLead(lead.name, lead.email);
           history.push({ role: "user", text: text });
-          history.push({ role: "model", text: data.reply });
+          history.push({ role: "model", text: cleanReply });
           if (history.length > 12) history = history.slice(-12);
         } catch(e) {
           typing.textContent = "Entschuldigung, ein Fehler ist aufgetreten.";
