@@ -46,19 +46,21 @@ module.exports = async (req, res) => {
     <p><em>Gesendet über den PrimeWeb Chat-Assistenten</em></p>
   `;
 
-  const payload = JSON.stringify({
-    sender:      { name: "PrimeWeb Chat", email: "marc@primeweb-design.de" },
-    to:          [{ email: "marc@primeweb-design.de" }],
-    replyTo:     { email: email || "marc@primeweb-design.de" },
-    subject:     `Neue Chat-Anfrage: ${name}`,
-    htmlContent: html,
-  });
+  const senders = [
+    { key: process.env.BREVO_API_KEY,   from: "marc@primeweb-design.de" },
+    { key: process.env.BREVO_API_KEY_2, from: "Marc@precisionpart.de" },
+  ].filter(s => s.key);
 
-  const keys = [process.env.BREVO_API_KEY, process.env.BREVO_API_KEY_2].filter(Boolean);
-
-  for (const key of keys) {
+  for (const { key, from } of senders) {
+    const p = JSON.stringify({
+      sender:      { name: "PrimeWeb Chat", email: from },
+      to:          [{ email: "marc@primeweb-design.de" }],
+      replyTo:     { email: email || from },
+      subject:     `Neue Chat-Anfrage: ${name}`,
+      htmlContent: html,
+    });
     try {
-      await sendViaBrevo(key, payload);
+      await sendViaBrevo(key, p);
       return res.status(200).json({ ok: true });
     } catch (e) {
       // try next key
