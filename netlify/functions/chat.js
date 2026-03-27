@@ -87,22 +87,14 @@ exports.handler = async (event) => {
       res.on("end", () => {
         try {
           const json = JSON.parse(data);
-          const text = json.choices?.[0]?.message?.content;
-          if (!text) {
-            resolve({
-              statusCode: 200,
-              headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-              body: JSON.stringify({ reply: "DEBUG: " + JSON.stringify(json).slice(0, 300) }),
-            });
-            return;
-          }
+          const text = json.choices?.[0]?.message?.content || "Entschuldigung, ich konnte keine Antwort generieren.";
           resolve({
             statusCode: 200,
             headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
             body: JSON.stringify({ reply: text }),
           });
-        } catch (e) {
-          resolve({ statusCode: 200, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }, body: JSON.stringify({ reply: "DEBUG RAW: " + data.slice(0, 300) }) });
+        } catch {
+          resolve({ statusCode: 500, body: "Parse error" });
         }
       });
     });
