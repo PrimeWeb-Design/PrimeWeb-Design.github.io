@@ -33,8 +33,8 @@ PAKETE & PREISE (immer beide Stufen erklären):
    - Für wen: Unternehmen die online verkaufen wollen
 
 Unterschied Einstieg vs. Premium:
-- Einstieg: funktional, sauber, professionell – ideal für kleines Budget. Kein Logo inklusive.
-- Premium: exklusives Design, gold-schwarze Bildsprache, filmische Qualität, maximale Wirkung. Logo-Design inklusive.
+- Einstieg: funktional, sauber, professionell – ideal für kleines Budget. Kein Logo, kein SEO inklusive.
+- Premium: exklusives Design, gold-schwarze Bildsprache, filmische Qualität, maximale Wirkung. Logo-Design und SEO-Optimierung inklusive.
 - Mehr Seiten: bei allen Paketen außer Landing Page inklusive
 - Pflegepaket: bei beiden Stufen optional buchbar (Preis auf Anfrage)
 
