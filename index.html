@@ -42,7 +42,7 @@
     font-size: 13px;
     font-weight: 800;
     left: 18px;
-    bottom: 18px;
+    bottom: 70px;
     z-index: 120;
   }
 
@@ -363,7 +363,7 @@
         padding: 0 14px;
         font-size: 12px;
         left: 14px;
-        bottom: 14px;
+        bottom: 70px;
       }
 
       .luxury-contact-copy,
@@ -1209,7 +1209,7 @@
   <!-- KI Chat Widget -->
   <style>
     #pw-chat-btn {
-      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      position: fixed; bottom: 80px; right: 28px; z-index: 9999;
       width: 58px; height: 58px; border-radius: 50%;
       background: linear-gradient(135deg, #C9A84C, #f0d878);
       border: none; cursor: pointer;
@@ -1272,8 +1272,32 @@
     }
     #pw-chat-send svg { width: 16px; height: 16px; fill: #0d131a; }
     @media (max-width: 480px) {
-      #pw-chat-box { width: calc(100vw - 20px); right: 10px; left: 10px; bottom: 80px; }
-      #pw-chat-btn { right: 18px; bottom: 18px; width: 52px; height: 52px; }
+      #pw-chat-box { width: calc(100vw - 20px); right: 10px; left: 10px; bottom: 140px; }
+      #pw-chat-btn { right: 18px; bottom: 80px; width: 52px; height: 52px; }
+    }
+    #pw-sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000;
+      background: #0d131a; border-top: 2px solid #C9A84C;
+      padding: 12px 20px; display: flex; align-items: center;
+      justify-content: center; gap: 16px; flex-wrap: wrap;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      transform: translateY(0); transition: transform 0.3s ease;
+    }
+    #pw-sticky-bar.hidden { transform: translateY(100%); }
+    #pw-sticky-text { color: rgba(248,244,234,0.9); font-size: 14px; }
+    #pw-sticky-text strong { color: #C9A84C; }
+    #pw-sticky-btn {
+      background: linear-gradient(135deg,#C9A84C,#f0d878); color: #0d131a;
+      border-radius: 999px; padding: 8px 20px; font-weight: 800;
+      font-size: 13px; text-decoration: none; white-space: nowrap;
+    }
+    #pw-sticky-close {
+      background: none; border: none; color: rgba(248,244,234,0.4);
+      font-size: 20px; cursor: pointer; line-height: 1; padding: 0 4px;
+    }
+    @media (max-width: 480px) {
+      #pw-sticky-bar { padding: 10px 14px; gap: 10px; }
+      #pw-sticky-text { font-size: 12px; }
     }
     #pw-exit-overlay {
       display: none; position: fixed; inset: 0; z-index: 10000;
@@ -1296,6 +1320,13 @@
       color: rgba(248,244,234,0.6); border-radius: 999px; padding: 12px 24px;
       font-size: 14px; cursor: pointer; }
   </style>
+
+  <!-- Sticky CTA Bar -->
+  <div id="pw-sticky-bar">
+    <span id="pw-sticky-text">🕐 Nur noch <strong id="pw-countdown">3</strong> freie Startplätze im April</span>
+    <a href="#anfrage" id="pw-sticky-btn">Jetzt anfragen</a>
+    <button id="pw-sticky-close" aria-label="Schließen">×</button>
+  </div>
 
   <div id="pw-exit-overlay">
     <div id="pw-exit-box">
@@ -1420,6 +1451,35 @@
 
       send.addEventListener("click", sendMessage);
       input.addEventListener("keydown", function(e) { if (e.key === "Enter") sendMessage(); });
+    })();
+
+    // Sticky Bar
+    (function() {
+      var bar = document.getElementById("pw-sticky-bar");
+      var closeBtn = document.getElementById("pw-sticky-close");
+      var shown = false;
+
+      // Zeige Bar erst nach 5 Sekunden
+      setTimeout(function() {
+        if (!localStorage.getItem("pw_sticky_closed")) {
+          bar.classList.remove("hidden");
+          shown = true;
+        }
+      }, 5000);
+
+      closeBtn.addEventListener("click", function() {
+        bar.classList.add("hidden");
+        localStorage.setItem("pw_sticky_closed", "1");
+      });
+
+      // Countdown: nächster freier Starttermin (nächster Montag)
+      var next = new Date();
+      next.setDate(next.getDate() + ((8 - next.getDay()) % 7 || 7));
+      var diff = Math.ceil((next - new Date()) / (1000 * 60 * 60 * 24));
+      var el = document.getElementById("pw-countdown");
+      if (el) el.textContent = diff + " Tag" + (diff !== 1 ? "en" : "");
+      document.getElementById("pw-sticky-text").innerHTML =
+        "🕐 Nächster freier Starttermin: in <strong>" + diff + " Tag" + (diff !== 1 ? "en" : "") + "</strong> &nbsp;·&nbsp; Jetzt Platz sichern";
     })();
 
     // Exit-Intent
