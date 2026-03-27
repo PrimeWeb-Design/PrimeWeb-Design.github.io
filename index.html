@@ -1205,5 +1205,150 @@
       });
     });
   </script>
+
+  <!-- KI Chat Widget -->
+  <style>
+    #pw-chat-btn {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: linear-gradient(135deg, #C9A84C, #f0d878);
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.5);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s;
+    }
+    #pw-chat-btn:hover { transform: scale(1.08); }
+    #pw-chat-btn svg { width: 26px; height: 26px; fill: #0d131a; }
+    #pw-chat-box {
+      position: fixed; bottom: 100px; right: 28px; z-index: 9999;
+      width: 340px; max-height: 480px;
+      background: #fffdf7; border-radius: 18px;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-top: 3px solid #C9A84C;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+      display: none; flex-direction: column; overflow: hidden;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    #pw-chat-box.open { display: flex; }
+    #pw-chat-header {
+      padding: 14px 18px; background: #0d131a;
+      color: #C9A84C; font-weight: 600; font-size: 14px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    #pw-chat-header span { color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 400; }
+    #pw-chat-close { background: none; border: none; color: #C9A84C; cursor: pointer; font-size: 20px; line-height: 1; }
+    #pw-chat-messages {
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .pw-msg {
+      max-width: 85%; padding: 10px 14px; border-radius: 14px;
+      font-size: 13px; line-height: 1.5;
+    }
+    .pw-msg.bot {
+      background: #f0ebe0; color: #1a1a1a; align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .pw-msg.user {
+      background: #C9A84C; color: #0d131a; align-self: flex-end;
+      border-bottom-right-radius: 4px; font-weight: 500;
+    }
+    .pw-msg.typing { color: #888; font-style: italic; }
+    #pw-chat-input-row {
+      display: flex; padding: 12px; gap: 8px;
+      border-top: 1px solid rgba(201,168,76,0.2);
+    }
+    #pw-chat-input {
+      flex: 1; padding: 9px 12px; border-radius: 20px;
+      border: 1px solid rgba(201,168,76,0.3); background: #fff;
+      font-size: 13px; outline: none; color: #1a1a1a;
+    }
+    #pw-chat-input:focus { border-color: #C9A84C; }
+    #pw-chat-send {
+      background: #C9A84C; border: none; border-radius: 50%;
+      width: 36px; height: 36px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    #pw-chat-send svg { width: 16px; height: 16px; fill: #0d131a; }
+  </style>
+
+  <button id="pw-chat-btn" title="Chat mit uns">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+  </button>
+
+  <div id="pw-chat-box">
+    <div id="pw-chat-header">
+      PrimeWeb Assistent <span>Antwortet sofort</span>
+      <button id="pw-chat-close">&times;</button>
+    </div>
+    <div id="pw-chat-messages"></div>
+    <div id="pw-chat-input-row">
+      <input id="pw-chat-input" type="text" placeholder="Ihre Frage..." maxlength="300" />
+      <button id="pw-chat-send">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var CHAT_API = "https://primeweb-chat.netlify.app/.netlify/functions/chat";
+      var history = [];
+      var btn = document.getElementById("pw-chat-btn");
+      var box = document.getElementById("pw-chat-box");
+      var closeBtn = document.getElementById("pw-chat-close");
+      var messages = document.getElementById("pw-chat-messages");
+      var input = document.getElementById("pw-chat-input");
+      var send = document.getElementById("pw-chat-send");
+
+      function addMsg(text, role) {
+        var div = document.createElement("div");
+        div.className = "pw-msg " + role;
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+        return div;
+      }
+
+      function openChat() {
+        box.classList.add("open");
+        if (!messages.children.length) {
+          addMsg("Hallo! Ich bin der PrimeWeb Assistent. Wie kann ich Ihnen helfen?", "bot");
+        }
+        input.focus();
+      }
+
+      btn.addEventListener("click", openChat);
+      closeBtn.addEventListener("click", function() { box.classList.remove("open"); });
+
+      async function sendMessage() {
+        var text = input.value.trim();
+        if (!text) return;
+        input.value = "";
+        addMsg(text, "user");
+        var typing = addMsg("...", "bot typing");
+        try {
+          var res = await fetch(CHAT_API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: text, history: history })
+          });
+          var data = await res.json();
+          typing.remove();
+          addMsg(data.reply, "bot");
+          history.push({ role: "user", text: text });
+          history.push({ role: "model", text: data.reply });
+          if (history.length > 12) history = history.slice(-12);
+        } catch(e) {
+          typing.textContent = "Entschuldigung, ein Fehler ist aufgetreten.";
+          typing.classList.remove("typing");
+        }
+      }
+
+      send.addEventListener("click", sendMessage);
+      input.addEventListener("keydown", function(e) { if (e.key === "Enter") sendMessage(); });
+    })();
+  </script>
 </body>
 </html>
