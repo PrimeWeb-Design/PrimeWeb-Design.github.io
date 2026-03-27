@@ -1062,7 +1062,7 @@
               </label>
               <div class="success-box" id="formSuccess"
                 role="status" aria-live="polite" aria-atomic="true">
-                Die Anfrage wurde gespeichert und ist jetzt intern verfügbar.
+                ✓ Vielen Dank! Marc meldet sich persönlich bei Ihnen – meist innerhalb von 24 Stunden.
               </div>
               <div class="error-box" id="formError"
                 role="alert" aria-live="assertive" aria-atomic="true">
@@ -1271,7 +1271,42 @@
       flex-shrink: 0;
     }
     #pw-chat-send svg { width: 16px; height: 16px; fill: #0d131a; }
+    @media (max-width: 480px) {
+      #pw-chat-box { width: calc(100vw - 20px); right: 10px; left: 10px; bottom: 80px; }
+      #pw-chat-btn { right: 18px; bottom: 18px; width: 52px; height: 52px; }
+    }
+    #pw-exit-overlay {
+      display: none; position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.55); align-items: center; justify-content: center;
+    }
+    #pw-exit-overlay.show { display: flex; }
+    #pw-exit-box {
+      background: #0d131a; border-top: 3px solid #C9A84C; border-radius: 18px;
+      padding: 36px 32px; max-width: 420px; width: calc(100% - 40px);
+      text-align: center; color: #f8f4ea;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    #pw-exit-box h3 { margin: 0 0 12px; font-size: 22px; color: #C9A84C; }
+    #pw-exit-box p { margin: 0 0 24px; font-size: 15px; line-height: 1.6; color: rgba(248,244,234,0.8); }
+    #pw-exit-box .pw-exit-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    #pw-exit-chat { background: linear-gradient(135deg,#C9A84C,#f0d878); color: #0d131a;
+      border: none; border-radius: 999px; padding: 12px 24px; font-weight: 800;
+      font-size: 14px; cursor: pointer; }
+    #pw-exit-close { background: none; border: 1px solid rgba(201,168,76,0.3);
+      color: rgba(248,244,234,0.6); border-radius: 999px; padding: 12px 24px;
+      font-size: 14px; cursor: pointer; }
   </style>
+
+  <div id="pw-exit-overlay">
+    <div id="pw-exit-box">
+      <h3>Warten Sie kurz!</h3>
+      <p>Haben Sie noch Fragen? Marc hilft Ihnen gerne persönlich – kostenlos und unverbindlich.</p>
+      <div class="pw-exit-btns">
+        <button id="pw-exit-chat">Jetzt im Chat fragen</button>
+        <button id="pw-exit-close">Nein danke</button>
+      </div>
+    </div>
+  </div>
 
   <button id="pw-chat-btn" title="Chat mit uns">
     <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
@@ -1361,12 +1396,14 @@
         addMsg(text, "user");
         var typing = addMsg("...", "bot typing");
         try {
-          var res = await fetch(CHAT_API, {
+          var minDelay = new Promise(function(r) { setTimeout(r, 1500); });
+          var fetchRes = fetch(CHAT_API, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: text, history: history })
-          });
-          var data = await res.json();
+          }).then(function(r) { return r.json(); });
+          var results = await Promise.all([fetchRes, minDelay]);
+          var data = results[0];
           typing.remove();
           var lead = extractLead(data.reply);
           var cleanReply = cleanText(data.reply);
@@ -1383,6 +1420,36 @@
 
       send.addEventListener("click", sendMessage);
       input.addEventListener("keydown", function(e) { if (e.key === "Enter") sendMessage(); });
+    })();
+
+    // Exit-Intent
+    (function() {
+      var overlay = document.getElementById("pw-exit-overlay");
+      var exitChat = document.getElementById("pw-exit-chat");
+      var exitClose = document.getElementById("pw-exit-close");
+      var shown = false;
+
+      document.addEventListener("mouseleave", function(e) {
+        if (shown || e.clientY > 10) return;
+        shown = true;
+        overlay.classList.add("show");
+      });
+
+      exitClose.addEventListener("click", function() {
+        overlay.classList.remove("show");
+      });
+
+      exitChat.addEventListener("click", function() {
+        overlay.classList.remove("show");
+        var box = document.getElementById("pw-chat-box");
+        if (!box.classList.contains("open")) {
+          document.getElementById("pw-chat-btn").click();
+        }
+      });
+
+      overlay.addEventListener("click", function(e) {
+        if (e.target === overlay) overlay.classList.remove("show");
+      });
     })();
   </script>
 </body>
