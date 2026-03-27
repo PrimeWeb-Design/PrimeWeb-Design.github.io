@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0d12"/>
+      <stop offset="100%" style="stop-color:#131820"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8a6820"/>
+      <stop offset="40%" style="stop-color:#f0d878"/>
+      <stop offset="65%" style="stop-color:#D4AF37"/>
+      <stop offset="100%" style="stop-color:#8a6820"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Gold top border -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#gold)"/>
+
+  <!-- Decorative circle -->
+  <circle cx="950" cy="315" r="280" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.1"/>
+  <circle cx="950" cy="315" r="200" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.08"/>
+
+  <!-- Monogram -->
+  <circle cx="120" cy="80" r="40" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity="0.6"/>
+  <text x="120" y="88" text-anchor="middle" font-family="Georgia, serif" font-size="32" fill="#C9A84C" font-weight="bold">P</text>
+
+  <!-- Brand name -->
+  <text x="175" y="72" font-family="Georgia, serif" font-size="22" fill="#f8f4ea" font-weight="bold" letter-spacing="1">PrimeWeb Design</text>
+  <text x="175" y="96" font-family="Arial, sans-serif" font-size="13" fill="#C9A84C" letter-spacing="3">LUXURY DIGITAL PRESENCE</text>
+
+  <!-- Main headline -->
+  <text x="100" y="240" font-family="Georgia, serif" font-size="58" fill="#f8f4ea" font-weight="bold">Webseiten mit</text>
+  <text x="100" y="310" font-family="Georgia, serif" font-size="58" fill="#C9A84C" font-weight="bold">Luxuswirkung.</text>
+
+  <!-- Subline -->
+  <text x="100" y="375" font-family="Arial, sans-serif" font-size="22" fill="rgba(248,244,234,0.65)">Premium Webdesign für lokale Unternehmen</text>
+  <text x="100" y="405" font-family="Arial, sans-serif" font-size="22" fill="rgba(248,244,234,0.65)">im Rheingau, Hessen &amp; ganz Deutschland.</text>
+
+  <!-- Gold divider -->
+  <rect x="100" y="445" width="80" height="2" fill="url(#gold)" opacity="0.8"/>
+
+  <!-- Price + CTA -->
+  <text x="100" y="490" font-family="Arial, sans-serif" font-size="18" fill="rgba(248,244,234,0.5)">Ab 499 € · Festpreise · Kein Baukasten</text>
+
+  <!-- URL -->
+  <text x="100" y="560" font-family="Arial, sans-serif" font-size="16" fill="#C9A84C" letter-spacing="1">www.primeweb-design.de</text>
+</svg>
