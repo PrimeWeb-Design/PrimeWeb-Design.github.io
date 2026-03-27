@@ -24,7 +24,7 @@ Leistungen:
 - Spezialisiert auf Handwerk, Dienstleister, lokale Betriebe
 
 Wichtige Regeln:
-- Antworte immer auf Deutsch
+- Antworte IMMER auf Deutsch
 - Halte Antworten kurz und freundlich (max. 3-4 Sätze)
 - Bei konkretem Interesse: empfehle das kostenlose 15-Minuten-Gespräch mit Marc
 - Keine erfundenen Informationen – nur was oben steht`;
@@ -56,26 +56,28 @@ exports.handler = async (event) => {
   const userMessage = (body.message || "").slice(0, 500);
   const history = (body.history || []).slice(-6);
 
-  const contents = [
-    ...history.map((m) => ({
-      role: m.role,
-      parts: [{ text: m.text }],
-    })),
-    { role: "user", parts: [{ text: userMessage }] },
+  const messages = [
+    { role: "system", content: SYSTEM_PROMPT },
+    ...history.map((m) => ({ role: m.role === "model" ? "assistant" : m.role, content: m.text })),
+    { role: "user", content: userMessage },
   ];
 
   const payload = JSON.stringify({
-    system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-    contents,
-    generationConfig: { maxOutputTokens: 256, temperature: 0.7 },
+    model: "llama-3.3-70b-versatile",
+    messages,
+    max_tokens: 256,
+    temperature: 0.7,
   });
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
   const options = {
-    hostname: "generativelanguage.googleapis.com",
-    path: `/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    hostname: "api.groq.com",
+    path: "/openai/v1/chat/completions",
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${apiKey}`,
+    },
   };
 
   return new Promise((resolve) => {
@@ -85,7 +87,7 @@ exports.handler = async (event) => {
       res.on("end", () => {
         try {
           const json = JSON.parse(data);
-          const text = json.candidates?.[0]?.content?.parts?.[0]?.text || "Entschuldigung, ich konnte keine Antwort generieren.";
+          const text = json.choices?.[0]?.message?.content || "Entschuldigung, ich konnte keine Antwort generieren.";
           resolve({
             statusCode: 200,
             headers: {
