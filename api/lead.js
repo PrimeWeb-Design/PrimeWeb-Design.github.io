@@ -84,7 +84,8 @@ ${zeilen}
 <p><em>Gesendet über ${formular ? "das Anfrageformular auf primeweb-design.de" : "den PrimeWeb Chat-Assistenten"}</em></p>`;
 
   const user = process.env.SMTP_USER || ZIEL;
-  const pass = process.env.SMTP_PASS;
+  // Zeilenumbrüche am Rand entfernen (Vercel-Wertfeld ist mehrzeilig, beim Einfügen rutscht leicht einer mit)
+  const pass = String(process.env.SMTP_PASS || "").replace(/^[\r\n]+|[\r\n]+$/g, "");
   if (!pass) { console.error("lead: SMTP_PASS fehlt in den Vercel-Umgebungsvariablen"); return res.status(500).end("Mail failed: pass-fehlt"); }
 
   const betreff = `Neue ${art}: ${String(body.company || body.name || "Unbekannt").replace(/[\r\n]/g, " ").slice(0, 100)}`;
