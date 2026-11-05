@@ -299,21 +299,20 @@ async function primewebHandleContactForm(form) {
         history: [{ date: now, text: "Lead über Website-Formular erfasst" }]
       });
 
-      // Email-Benachrichtigung via FormSubmit.co
+      // E-Mail-Benachrichtigung über die eigene Funktion (Vercel → Brevo) statt FormSubmit.co
       try {
-        await fetch("https://formsubmit.co/ajax/marc@primeweb-design.de", {
+        await fetch("https://prime-web-design-github-io.vercel.app/api/lead", {
           method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            _subject: "Neue Anfrage: " + companyOrName + " – " + (packageName || "Allgemein"),
-            Name: name,
-            Unternehmen: company,
-            "E-Mail": email,
-            Telefon: phone,
-            Paket: packageName,
-            Website: website,
-            Nachricht: message,
-            _template: "table"
+            source: "formular",
+            name,
+            company,
+            email,
+            phone,
+            package: packageName,
+            website,
+            message
           })
         });
       } catch (_) { /* Email-Fehler nicht kritisch */ }
@@ -336,12 +335,31 @@ function primewebWireFaqToggles() {
   });
 }
 
+// Google Tag Manager erst nach Einwilligung laden (vorher: lud immer, unabhängig vom Banner)
+function primewebLoadGtm() {
+  if (window.primewebGtmLoaded) return;
+  window.primewebGtmLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtm.js?id=GTM-N4ML7QKC";
+  document.head.appendChild(s);
+}
+
+// Einwilligung widerrufen / neu wählen (Link „Cookie-Einstellungen“ im Footer)
+function primewebResetCookieConsent() {
+  try { localStorage.removeItem(PRIMEWEB_COOKIE_CONSENT); } catch (_) { }
+  window.location.reload();
+}
+
 function primewebInitCookieBanner() {
   const banner = document.getElementById("cookieBanner");
   const accept = document.getElementById("cookieAccept");
   const decline = document.getElementById("cookieDecline");
 
   if (!banner || !accept || !decline) return;
+  if (localStorage.getItem(PRIMEWEB_COOKIE_CONSENT) === "accepted") primewebLoadGtm();
   if (localStorage.getItem(PRIMEWEB_COOKIE_CONSENT)) {
     banner.hidden = true;
     banner.style.display = "none";
@@ -364,7 +382,7 @@ function primewebInitCookieBanner() {
     }, 340);
   }
 
-  accept.addEventListener("click", () => setConsent("accepted"));
+  accept.addEventListener("click", () => { setConsent("accepted"); primewebLoadGtm(); });
   decline.addEventListener("click", () => setConsent("necessary"));
 }
 
@@ -463,6 +481,7 @@ window.primeweb = {
   primewebHandleContactForm,
   primewebWireFaqToggles,
   primewebInitCookieBanner,
+  primewebResetCookieConsent,
   primewebInitHeroStageMotion,
   PRIMEWEB_ADMIN_HASH,
   PRIMEWEB_STATUS_ORDER

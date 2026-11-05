@@ -34,16 +34,25 @@ module.exports = async (req, res) => {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   const body = req.body || {};
-  const name    = (body.name    || "Unbekannt").slice(0, 100);
-  const email   = (body.email   || "").slice(0, 100);
-  const message = (body.message || "").slice(0, 500);
+  // Eingaben begrenzen und für die HTML-Mail entschärfen
+  const esc = (v, n) => String(v || "").slice(0, n).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const formular = body.source === "formular";
+  const name    = esc(body.name || "Unbekannt", 100);
+  const email   = String(body.email || "").slice(0, 100).replace(/[\r\n<>]/g, "");
+  const message = esc(body.message, formular ? 3000 : 500).replace(/\n/g, "<br>");
+  const zeilen = formular
+    ? [["Unternehmen", esc(body.company, 150)], ["Telefon", esc(body.phone, 50)], ["Paket", esc(body.package, 100)], ["Website", esc(body.website, 200)]]
+        .filter(([, v]) => v).map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`).join("")
+    : "";
+  const art = formular ? "Formular-Anfrage" : "Chat-Anfrage";
 
   const html = `
-    <h2>Neue Chat-Anfrage von ${name}</h2>
+    <h2>Neue ${art} von ${name}</h2>
     <p><strong>Name:</strong> ${name}</p>
-    <p><strong>E-Mail:</strong> ${email}</p>
+    <p><strong>E-Mail:</strong> ${esc(email, 100)}</p>
+    ${zeilen}
     <p><strong>Nachricht:</strong><br>${message}</p>
-    <p><em>Gesendet über den PrimeWeb Chat-Assistenten</em></p>
+    <p><em>Gesendet über ${formular ? "das Anfrageformular auf primeweb-design.de" : "den PrimeWeb Chat-Assistenten"}</em></p>
   `;
 
   const senders = [
@@ -53,10 +62,10 @@ module.exports = async (req, res) => {
 
   for (const { key, from } of senders) {
     const p = JSON.stringify({
-      sender:      { name: "PrimeWeb Chat", email: from },
+      sender:      { name: formular ? "PrimeWeb Anfrage" : "PrimeWeb Chat", email: from },
       to:          [{ email: "marc@primeweb-design.de" }],
-      replyTo:     { email: email || from },
-      subject:     `Neue Chat-Anfrage: ${name}`,
+      replyTo:     { email: /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ? email : from },
+      subject:     `Neue ${art}: ${String(body.company || body.name || "Unbekannt").replace(/[\r\n]/g, " ").slice(0, 100)}`,
       htmlContent: html,
     });
     try {
