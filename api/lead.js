@@ -85,7 +85,7 @@ ${zeilen}
 
   const user = process.env.SMTP_USER || ZIEL;
   const pass = process.env.SMTP_PASS;
-  if (!pass) { console.error("lead: SMTP_PASS fehlt in den Vercel-Umgebungsvariablen"); return res.status(500).end("Mail failed"); }
+  if (!pass) { console.error("lead: SMTP_PASS fehlt in den Vercel-Umgebungsvariablen"); return res.status(500).end("Mail failed: pass-fehlt"); }
 
   const betreff = `Neue ${art}: ${String(body.company || body.name || "Unbekannt").replace(/[\r\n]/g, " ").slice(0, 100)}`;
   const daten = [
@@ -111,6 +111,9 @@ ${zeilen}
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.error("lead: Versand fehlgeschlagen –", e.message);
-    return res.status(500).end("Mail failed");
+    // grobe Ursache ohne Details zurückgeben (hilft bei der Fehlersuche, verrät nichts Geheimes)
+    const m = String(e.message);
+    const grund = /^SMTP 53d/.test(m) ? "anmeldung" : /^SMTP 5[05]d/.test(m) ? "abgelehnt-" + m.slice(5, 8) : /^SMTP/.test(m) ? "smtp-" + m.slice(5, 8) : /Zeit/.test(m) ? "zeitueberschreitung" : "verbindung";
+    return res.status(500).end("Mail failed: " + grund);
   }
 };
