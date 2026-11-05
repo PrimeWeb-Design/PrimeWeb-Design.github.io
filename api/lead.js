@@ -113,7 +113,7 @@ ${zeilen}
     console.error("lead: Versand fehlgeschlagen –", e.message);
     // grobe Ursache ohne Details zurückgeben (hilft bei der Fehlersuche, verrät nichts Geheimes)
     const m = String(e.message);
-    const grund = /^SMTP 53d/.test(m) ? "anmeldung" : /^SMTP 5[05]d/.test(m) ? "abgelehnt-" + m.slice(5, 8) : /^SMTP/.test(m) ? "smtp-" + m.slice(5, 8) : /Zeit/.test(m) ? "zeitueberschreitung" : "verbindung";
+    const grund = /^SMTP 53\d/.test(m) ? "anmeldung" : /^SMTP 5[05]\d/.test(m) ? "abgelehnt-" + m.slice(5, 8) : /^SMTP/.test(m) ? "smtp-" + m.slice(5, 8) : /Zeit/.test(m) ? "zeitueberschreitung" : "verbindung";
     return res.status(500).end("Mail failed: " + grund);
   }
 };
