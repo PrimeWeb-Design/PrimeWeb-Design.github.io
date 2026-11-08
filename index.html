@@ -42,7 +42,7 @@
       background: linear-gradient(135deg, #25d366, #128c4a);
       color: #ffffff;
       box-shadow: 0 12px 26px rgba(18, 140, 74, 0.2);
-    font-family: Manrope, sans-serif;
+    font-family: var(--font-body, "Manrope", sans-serif);
     font-size: 13px;
     font-weight: 800;
     left: 18px;
@@ -304,7 +304,7 @@
       border: 1px solid rgba(214, 176, 106, 0.18);
       background: rgba(214, 176, 106, 0.08);
       color: #a07828;
-      font-family: "Cormorant Garamond", serif;
+      font-family: var(--font-head, "Cormorant Garamond", serif);
       font-size: 26px;
       font-weight: 700;
       flex: 0 0 48px;
@@ -453,6 +453,21 @@
   }
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
+  <!-- pw-design:start (wird vom Admin-Bereich verwaltet) -->
+  <style id="pw-design">
+/*pw-json:{"vars":{},"eigenesCss":"","schriften":[],"hintergruende":{".bgx-swl5h3":{"art":"bild","bild":"bilder/screenshot-2026-11-08-220045.png","abdunkeln":0,"groesse":"cover","position":"center"},".bgx-pp57fh":{"art":"bild","bild":"bilder/screenshot-2026-11-08-220804.png","abdunkeln":0,"groesse":"contain","position":"center"},".bgx-60synb":{"art":"bild","bild":"bilder/screenshot-2026-11-08-222139.png","abdunkeln":0,"groesse":"cover","position":"center"}}}:pw-json*/
+
+:root {
+
+}
+/* Hintergründe */
+.bgx-swl5h3 { background-color: transparent !important; background-image: url("bilder/screenshot-2026-11-08-220045.png") !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; }
+.bgx-pp57fh { background-color: transparent !important; background-image: url("bilder/screenshot-2026-11-08-220804.png") !important; background-size: contain !important; background-position: center !important; background-repeat: no-repeat !important; }
+.bgx-60synb { background-color: transparent !important; background-image: url("bilder/screenshot-2026-11-08-222139.png") !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; }
+/* Eigenes CSS */
+
+  </style>
+  <!-- pw-design:end -->
 </head>
 <body class="luxury-body">
   <!-- Barrierefreiheit: Direkt zum Inhalt springen -->
@@ -606,10 +621,10 @@
         </div>
         <div class="luxury-showcase-grid">
           <article class="luxury-case large reveal">
-            <div class="luxury-case-media media-dark">
+            <div class="luxury-case-media media-dark bgx-swl5h3">
               <div class="case-overlay-copy">
-                <span class="mini-tag">Handwerk Premium</span>
-                <h3>Starke Präsenz für Handwerksbetriebe mit Anspruch</h3>
+                
+                <span class="mini-tag">Handwerk Premium</span><h3>Starke Präsenz für Handwerksbetriebe mit Anspruch</h3>
               </div>
             </div>
             <div class="luxury-case-body">
@@ -622,7 +637,7 @@
             </div>
           </article>
           <article class="luxury-case reveal delay-1">
-            <div class="luxury-case-media media-gold" aria-hidden="true"></div>
+            <div class="luxury-case-media media-gold bgx-pp57fh" aria-hidden="true"></div>
             <div class="luxury-case-body">
               <span class="tag luxury-tag">Studio / Beauty / Praxis</span>
               <h3>Edle Ruhe, klare Führung, hochwertige Wahrnehmung</h3>
@@ -630,9 +645,9 @@
             </div>
           </article>
           <article class="luxury-case reveal delay-2">
-            <div class="luxury-case-media media-stone" aria-hidden="true"></div>
+            <div class="luxury-case-media media-stone bgx-60synb" aria-hidden="true"></div>
             <div class="luxury-case-body">
-              <span class="tag luxury-tag">Beratung / Kanzlei</span>
+              <span class="tag luxury-tag">Dienstleister / Kleinbanken</span>
               <h3>Souveräne Sprache und visuelle Autorität</h3>
               <p>Reduziert, präzise und selbstbewusst. Genau die Art von digitalem Auftritt, die Kompetenz schon optisch unterstreicht.</p>
             </div>
@@ -654,7 +669,7 @@
               <h3>Starke erste Wahrnehmung statt lebloser Standardfläche.</h3>
             </div>
           </article>
-          <article class="signature-frame frame-wide reveal delay-1">
+          <article class="signature-frame frame-wide reveal delay-1 bgx-wzdngw">
             <div class="frame-sheen" aria-hidden="true"></div>
             <div class="frame-copy">
               <span class="mini-tag">Luxury Layout</span>
@@ -1362,7 +1377,7 @@
 
   <!-- Sticky CTA Bar -->
   <div id="pw-sticky-bar">
-    <span id="pw-sticky-text">🕐 Nur noch <strong id="pw-countdown">3</strong> freie Startplätze im April</span>
+    <span id="pw-sticky-text">🕐 Nur noch <strong id="pw-countdown">3</strong> freie Startplätze</span>
     <a href="#anfrage" id="pw-sticky-btn">Jetzt anfragen</a>
     <button id="pw-sticky-close" aria-label="Schließen">×</button>
   </div>

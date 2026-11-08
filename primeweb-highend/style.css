@@ -33,7 +33,7 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--font-body, "Manrope", sans-serif);
   color: var(--ink);
   background:
     radial-gradient(circle at 15% 0%, rgba(214, 176, 106, 0.18), transparent 700px),
@@ -110,7 +110,7 @@ textarea {
   display: grid;
   place-items: center;
   border-radius: 16px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   font-size: 29px;
   color: var(--gold-bright);
   background:
@@ -122,7 +122,7 @@ textarea {
 
 .brand strong {
   display: block;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   font-size: 24px;
   line-height: 0.92;
   color: #fff8ec;
@@ -284,7 +284,7 @@ textarea {
 .admin-panel h2,
 .admin-panel h3,
 .modal-head h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   line-height: 0.98;
   letter-spacing: -0.04em;
 }
@@ -532,7 +532,7 @@ textarea {
   display: block;
   margin-bottom: 10px;
   color: #fff3dc;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   font-size: 30px;
   line-height: 1;
 }
@@ -1268,7 +1268,7 @@ textarea {
 }
 
 .quote-shell h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   color: #fff4dc;
   font-size: clamp(38px, 5vw, 62px);
   line-height: 1.02;
@@ -1603,7 +1603,7 @@ body {
   white-space: nowrap;
   color: var(--gold-deep);
   font-size: 30px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
 }
 .luxury-price-item:hover {
   transform: translateY(-4px);
@@ -1757,7 +1757,7 @@ body {
 .frame-copy h3 {
   color: #fff;
   font-size: 24px;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   line-height: 1.1;
   margin-top: 10px;
 }
@@ -1772,7 +1772,7 @@ body {
   align-items: start;
 }
 .luxury-side-panel h3 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   font-size: 38px;
   line-height: 0.98;
   letter-spacing: -0.04em;
@@ -1899,14 +1899,14 @@ body {
   border-radius: 18px;
   background: linear-gradient(135deg, var(--gold), var(--gold-bright));
   color: #1a0e00;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   font-size: 32px;
   font-weight: 700;
   box-shadow: 0 4px 18px rgba(214,176,106,0.35);
   flex-shrink: 0;
 }
 .timeline-lux h3 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   font-size: 34px;
   line-height: 0.98;
   letter-spacing: -0.04em;
@@ -2275,7 +2275,7 @@ body {
   text-align: center;
 }
 .stat-card .stat-val {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-head, "Cormorant Garamond", serif);
   font-size: 52px;
   font-weight: 700;
   color: var(--gold-deep);
@@ -2418,7 +2418,7 @@ body {
   padding: 10px 22px;
   background: #d6b06a;
   color: #090c11;
-  font-family: Manrope, sans-serif;
+  font-family: var(--font-body, "Manrope", sans-serif);
   font-weight: 700;
   font-size: 14px;
   border-radius: 0 0 10px 10px;
