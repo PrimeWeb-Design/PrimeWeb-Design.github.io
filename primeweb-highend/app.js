@@ -275,22 +275,24 @@
   }
 
 
-  /* ---------- Cookie-Banner: Google Tag Manager nur nach Einwilligung ---------- */
+  /* ---------- Cookie-Banner: Google Analytics 4 nur nach Einwilligung ---------- */
   const CONSENT_KEY = 'pw_consent'; // "ja" | "nein"
-  const GTM_ID = 'GTM-N4ML7QKC';
+  const GA_ID = 'G-5DE70SK8NX';
   const banner = document.getElementById('cookieBanner');
   const readConsent = () => { try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; } };
   const writeConsent = (v) => { try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {} };
-  function loadGtm() {
-    if (window.pwGtmLoaded) return;
-    window.pwGtmLoaded = true;
+  function loadAnalytics() {
+    if (window.pwGaLoaded) return;
+    window.pwGaLoaded = true;
     window.dataLayer = window.dataLayer || [];
     function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
     gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
-    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    gtag('js', new Date());
+    gtag('config', GA_ID, { anonymize_ip: true });
     const s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
   }
   function showBanner() {
@@ -305,9 +307,9 @@
   }
   if (banner) {
     const vorher = readConsent();
-    if (vorher === 'ja') loadGtm();
+    if (vorher === 'ja') loadAnalytics();
     else if (vorher !== 'nein') setTimeout(showBanner, 900);
-    document.getElementById('cookieAccept').addEventListener('click', () => { writeConsent('ja'); hideBanner(); loadGtm(); });
+    document.getElementById('cookieAccept').addEventListener('click', () => { writeConsent('ja'); hideBanner(); loadAnalytics(); });
     document.getElementById('cookieDecline').addEventListener('click', () => {
       const warJa = readConsent() === 'ja';
       writeConsent('nein'); hideBanner();
