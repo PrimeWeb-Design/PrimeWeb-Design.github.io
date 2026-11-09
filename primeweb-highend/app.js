@@ -315,11 +315,23 @@
     });
     const settings = document.getElementById('cookieSettings');
     if (settings) settings.addEventListener('click', (e) => { e.preventDefault(); showBanner(); });
-    banner.querySelectorAll('[data-open-legal]').forEach(a => a.addEventListener('click', () => {
-      const d = document.getElementById(a.getAttribute('data-open-legal'));
-      if (d && 'open' in d) d.open = true;
-    }));
   }
+
+  /* ---------- Rechtstexte: Links auf #impressum / #datenschutz klappen den Text auf und scrollen hin ---------- */
+  function openLegal(id, scroll) {
+    const d = document.getElementById(id);
+    if (!d || !('open' in d)) return false;
+    d.open = true;
+    if (scroll) d.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    return true;
+  }
+  document.querySelectorAll('a[href="#impressum"], a[href="#datenschutz"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href').slice(1);
+      if (openLegal(id, true)) { e.preventDefault(); history.replaceState(null, '', '#' + id); }
+    });
+  });
+  if (location.hash === '#impressum' || location.hash === '#datenschutz') openLegal(location.hash.slice(1), true);
 
   /* ---------- Formular (01) ---------- */
   const form = document.getElementById('lead-form');

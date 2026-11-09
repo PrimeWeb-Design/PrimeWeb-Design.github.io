@@ -25,7 +25,7 @@
     @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 300 700; font-display: swap; src: url("./fonts/cormorant-garamond-italic-latin.woff2") format("woff2"); }
     @font-face { font-family: "Manrope"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("./fonts/manrope-latin.woff2") format("woff2"); }
   </style>
-  <link rel="stylesheet" href="./primeweb-highend/style.css?v=8">
+  <link rel="stylesheet" href="./primeweb-highend/style.css?v=9">
   <script>document.documentElement.classList.replace('no-js','js');</script>
   <script type="importmap">
   {
@@ -38,7 +38,7 @@
   <script src="./primeweb-highend/vendor/gsap.min.js" defer></script>
   <script src="./primeweb-highend/vendor/ScrollTrigger.min.js" defer></script>
   <script src="./primeweb-highend/vendor/lenis.min.js" defer></script>
-  <script src="./primeweb-highend/app.js?v=6" defer></script>
+  <script src="./primeweb-highend/app.js?v=7" defer></script>
   <script type="module" src="./primeweb-highend/hero3d.js?v=2"></script>
   <!-- Gestaltung „Obsidian Gallery“ (Entwurf 11, November 2026). bilder/studie-*.webp sind KI-generierte Bildstudien, referenz-*.webp die echte Kundenreferenz. -->
   <script type="application/ld+json">
@@ -673,7 +673,7 @@
     </div>
     <h2 id="legal-heading" class="sr-only">Rechtliches</h2>
     <div class="legal-grid">
-          <details class="legal-card reveal" data-rotate-icon>
+          <details class="legal-card reveal" id="impressum" data-rotate-icon>
             <summary>
               <span>Impressum</span>
               <span class="legal-icon" data-faq-icon aria-hidden="true">+</span>
@@ -693,7 +693,7 @@
             </div>
           </details>
 
-          <details class="legal-card reveal delay-1" data-rotate-icon>
+          <details class="legal-card reveal delay-1" id="datenschutz" data-rotate-icon>
             <summary>
               <span>Datenschutzerklärung</span>
               <span class="legal-icon" data-faq-icon aria-hidden="true">+</span>
@@ -716,8 +716,8 @@
     <div class="foot-line">
       <span>© 2026 PrimeWeb Design · Marc Daub · Rheinstraße 29 · 65385 Rüdesheim am Rhein</span>
       <div class="foot-links">
-        <a href="#rechtliches">Impressum</a>
-        <a href="#rechtliches">Datenschutz</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
         <a href="#cookies" id="cookieSettings">Cookie-Einstellungen</a>
         <a href="#start">Nach oben</a>
       </div>
