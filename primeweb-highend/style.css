@@ -85,11 +85,10 @@ p, figure { margin: 0; }
 
 /* ---------- Grain / Atmosphäre (01) ---------- */
 .grain {
-  position: fixed; inset: -50%; z-index: 60; pointer-events: none;
-  opacity: 0.045;
+  position: fixed; inset: 0; z-index: 60; pointer-events: none;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 220px 220px;
-  mix-blend-mode: screen;
 }
 
 /* ---------- Typo-Hilfen ---------- */
@@ -194,8 +193,8 @@ html.no-anim .parallax > img { transform: none; }
 }
 .top-nav.is-scrolled {
   background: rgba(7, 10, 16, 0.74);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom-color: var(--line);
 }
 .top-nav.is-hidden { transform: translateY(-110%); }

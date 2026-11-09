@@ -34,7 +34,9 @@ if (!hero || !canvas || reduced || !webglOk()) {
 
 function init() {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.25 : 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.1 : 1.25));
+  // Glasbrechung in halber Auflösung berechnen (größter Kostenfaktor)
+  if ('transmissionResolutionScale' in renderer) renderer.transmissionResolutionScale = 0.5;
   renderer.setClearColor(0x000000, 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -78,8 +80,7 @@ function init() {
     envMapIntensity: 1.5,
     specularIntensity: 1,
     specularColor: new THREE.Color(0xd8b56a),
-    iridescence: 0.25,
-    iridescenceIOR: 1.3
+    iridescence: 0
   });
   const monolith = new THREE.Mesh(geo, mat);
   group.add(monolith);
@@ -111,7 +112,7 @@ function init() {
   place();
 
   // Goldene Partikel
-  const count = small ? 350 : 1600;
+  const count = small ? 300 : 900;
   const pos = new Float32Array(count * 3);
   const speed = new Float32Array(count);
   for (let i = 0; i < count; i++) {
@@ -157,9 +158,27 @@ function init() {
   document.addEventListener('visibilitychange', () => { if (!document.hidden && visible && !running) loop(); });
 
   const clock = new THREE.Clock();
+  let last = performance.now(), slow = 0, stufe = 0, frames = 0;
+  function pruefeTempo() {
+    const now = performance.now(), d = now - last; last = now;
+    if (d > 400) return; // Tab war pausiert/im Hintergrund – nicht werten
+    if (frames++ < 30) return; // Aufwärmphase
+    slow = d > 40 ? slow + 1 : Math.max(0, slow - 1);
+    if (slow > 45 && stufe === 0) { // ~1 s dauerhaft unter 25 fps
+      stufe = 1; slow = 0;
+      mat.transmission = 0; mat.needsUpdate = true; renderer.setPixelRatio(1);
+      console.info('Hero 3D: Glasbrechung abgeschaltet (Tempo).');
+    } else if (slow > 45 && stufe === 1) {
+      stufe = 2; visible = false; running = false; io.disconnect();
+      hero.classList.remove('is-3d'); renderer.dispose();
+      console.info('Hero 3D: beendet, statische Variante (Tempo).');
+    }
+  }
   function loop() {
     if (!visible || document.hidden) { running = false; return; }
     running = true;
+    pruefeTempo();
+    if (stufe === 2) return;
     const t = clock.getElapsedTime();
     const dt = 0.016;
 

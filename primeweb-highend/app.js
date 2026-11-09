@@ -54,8 +54,9 @@
 
   /* ---------- Lenis Smooth-Scroll (optional) ---------- */
   let lenis = null;
-  const noSmooth = /[?&]nosmooth/.test(location.search); // Test: Smooth-Scroll aus
-  if (!noAnim && !isTouch && !noSmooth && typeof window.Lenis !== 'undefined' && hasGsap) {
+  // Smooth-Scroll ist standardmäßig AUS (fühlte sich wie Hängen an); zum Testen mit ?smooth einschalten
+  const smooth = /[?&]smooth/.test(location.search);
+  if (!noAnim && !isTouch && smooth && typeof window.Lenis !== 'undefined' && hasGsap) {
     try {
       lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
       lenis.on('scroll', ScrollTrigger.update);
