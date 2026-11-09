@@ -1,513 +1,322 @@
-﻿const PRIMEWEB_DB_NAME = "primeweb_highend_db";
-const PRIMEWEB_STORE = "leads";
-const PRIMEWEB_ADMIN_HASH = "d9a9162db32049c8402a2be70ef764796213dd6ff6880a758d6495450d603a53";
-const PRIMEWEB_ADMIN_SESSION = "primeweb_admin_session";
-const PRIMEWEB_COOKIE_CONSENT = "primeweb_cookie_consent";
-
-const PRIMEWEB_STATUS_ORDER = [
-  "Offen",
-  "Kontaktiert",
-  "Im Gespräch",
-  "Abgeschlossen",
-  "Abgelehnt"
-];
-
-const PRIMEWEB_DEFAULT_LEAD = {
-  firma: "",
-  ort: "",
-  branche: "",
-  website: "",
-  problem: "",
-  paket: "Beratung",
-  preis: 0,
-  tel: "",
-  email: "",
-  contacts: [],
-  contactNames: "",
-  websiteScore: 0,
-  researchStatus: "",
-  needsWebsite: false,
-  needsRedesign: false,
-  contactDelta: 0,
-  pagesScanned: 0,
-  cityQuery: "",
-  sourceUrl: "",
-  lastResearchAt: "",
-  signals: [],
-  prio: "HOCH",
-  status: "Offen",
-  notiz: "",
-  source: "Website",
-  createdAt: "",
-  updatedAt: "",
-  history: []
-};
-
-function primewebEscape(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function primewebFormatDate(value) {
-  if (!value) return "-";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "-";
-  return date.toLocaleString("de-DE", {
-    dateStyle: "short",
-    timeStyle: "short"
-  });
-}
-
-function primewebNormalizeLead(lead) {
-  const normalized = { ...PRIMEWEB_DEFAULT_LEAD, ...lead };
-  normalized.id = lead.id || Date.now();
-  normalized.preis = Number(normalized.preis) || 0;
-  normalized.websiteScore = Math.max(0, Math.min(100, Number(normalized.websiteScore) || 0));
-  normalized.prio = ["HOCH", "MITTEL", "NIEDRIG"].includes(normalized.prio)
-    ? normalized.prio
-    : "MITTEL";
-  normalized.status = PRIMEWEB_STATUS_ORDER.includes(normalized.status)
-    ? normalized.status
-    : "Offen";
-  normalized.source = normalized.source || "Website";
-  normalized.contacts = Array.isArray(normalized.contacts) ? normalized.contacts : [];
-  normalized.contactDelta = Math.max(0, Number(normalized.contactDelta) || 0);
-  normalized.pagesScanned = Math.max(0, Number(normalized.pagesScanned) || 0);
-  normalized.signals = Array.isArray(normalized.signals) ? normalized.signals : [];
-  normalized.needsWebsite = Boolean(normalized.needsWebsite);
-  normalized.needsRedesign = Boolean(normalized.needsRedesign);
-  normalized.createdAt = normalized.createdAt || new Date().toISOString();
-  normalized.updatedAt = normalized.updatedAt || normalized.createdAt;
-  normalized.history = Array.isArray(normalized.history) ? normalized.history : [];
-  return normalized;
-}
-
-function primewebOpenDb() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(PRIMEWEB_DB_NAME, 1);
-
-    request.onupgradeneeded = () => {
-      const db = request.result;
-      if (!db.objectStoreNames.contains(PRIMEWEB_STORE)) {
-        const store = db.createObjectStore(PRIMEWEB_STORE, { keyPath: "id" });
-        store.createIndex("updatedAt", "updatedAt");
-        store.createIndex("status", "status");
-        store.createIndex("source", "source");
-      }
-    };
-
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
-}
-
-async function primewebReadAllLeads() {
-  const db = await primewebOpenDb();
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(PRIMEWEB_STORE, "readonly");
-    const store = transaction.objectStore(PRIMEWEB_STORE);
-    const request = store.getAll();
-
-    request.onsuccess = () => {
-      const rows = Array.isArray(request.result) ? request.result : [];
-      resolve(rows.map(primewebNormalizeLead));
-    };
-    request.onerror = () => reject(request.error);
-  });
-}
-
-async function primewebSaveLead(lead) {
-  const db = await primewebOpenDb();
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(PRIMEWEB_STORE, "readwrite");
-    const store = transaction.objectStore(PRIMEWEB_STORE);
-    store.put(primewebNormalizeLead(lead));
-    transaction.oncomplete = () => resolve();
-    transaction.onerror = () => reject(transaction.error);
-  });
-}
-
-async function primewebDeleteLead(id) {
-  const db = await primewebOpenDb();
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(PRIMEWEB_STORE, "readwrite");
-    const store = transaction.objectStore(PRIMEWEB_STORE);
-    store.delete(id);
-    transaction.oncomplete = () => resolve();
-    transaction.onerror = () => reject(transaction.error);
-  });
-}
-
-async function primewebReplaceAllLeads(leads) {
-  const db = await primewebOpenDb();
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(PRIMEWEB_STORE, "readwrite");
-    const store = transaction.objectStore(PRIMEWEB_STORE);
-    store.clear();
-    leads.map(primewebNormalizeLead).forEach((lead) => {
-      store.put(lead);
-    });
-    transaction.oncomplete = () => resolve();
-    transaction.onerror = () => reject(transaction.error);
-  });
-}
-
-function primewebLeadMergeKey(lead) {
-  return [
-    String(lead.firma || "").trim().toLowerCase(),
-    String(lead.website || "").trim().toLowerCase(),
-    String(lead.sourceUrl || "").trim().toLowerCase(),
-    String(lead.ort || "").trim().toLowerCase()
-  ].join("|");
-}
-
-async function primewebMergeLeads(leads) {
-  const existing = await primewebReadAllLeads();
-  const merged = new Map();
-
-  existing.forEach((lead) => {
-    merged.set(primewebLeadMergeKey(lead), primewebNormalizeLead(lead));
-  });
-
-  leads.map(primewebNormalizeLead).forEach((lead) => {
-    const key = primewebLeadMergeKey(lead);
-    const current = merged.get(key);
-    if (!current) {
-      merged.set(key, lead);
-      return;
-    }
-
-    merged.set(key, primewebNormalizeLead({
-      ...current,
-      ...lead,
-      id: current.id || lead.id,
-      createdAt: current.createdAt || lead.createdAt,
-      updatedAt: lead.updatedAt || current.updatedAt,
-      history: [...(lead.history || []), ...(current.history || [])].slice(0, 20)
-    }));
-  });
-
-  return primewebReplaceAllLeads(Array.from(merged.values()));
-}
-
-function primewebExportJson(leads, filename) {
-  const blob = new Blob([JSON.stringify(leads, null, 2)], {
-    type: "application/json"
-  });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename;
-  link.click();
-  URL.revokeObjectURL(url);
-}
-
-async function primewebHash(text) {
-  const data = new TextEncoder().encode(text);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  return Array.from(new Uint8Array(hashBuffer))
-    .map((byte) => byte.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-function primewebIsAuthenticated() {
-  return sessionStorage.getItem(PRIMEWEB_ADMIN_SESSION) === "1";
-}
-
-function primewebSetAuthenticated(state) {
-  if (state) {
-    sessionStorage.setItem(PRIMEWEB_ADMIN_SESSION, "1");
-  } else {
-    sessionStorage.removeItem(PRIMEWEB_ADMIN_SESSION);
-  }
-}
-
-function primewebStatusClass(status) {
-  if (status === "Offen") return "pill-status-open";
-  if (status === "Kontaktiert") return "pill-status-contact";
-  if (status === "Im Gespräch") return "pill-status-talk";
-  if (status === "Abgeschlossen") return "pill-status-win";
-  return "pill-status-loss";
-}
-
-function primewebPriorityClass(prio) {
-  if (prio === "HOCH") return "pill-high";
-  if (prio === "MITTEL") return "pill-mid";
-  return "pill-low";
-}
-
-function primewebResearchBadge(lead) {
-  if (lead.needsWebsite) return "Keine Website";
-  if (lead.needsRedesign) return "Redesign sinnvoll";
-  if (lead.websiteScore <= 0) return "Offen";
-  return "Score " + lead.websiteScore;
-}
-
-function primewebToast(message, isError = false) {
-  const toast = document.getElementById("toast");
-  if (!toast) return;
-  toast.textContent = message;
-  toast.style.display = "block";
-  toast.style.background = isError ? "#b94242" : "#102033";
-  clearTimeout(primewebToast.timer);
-  primewebToast.timer = setTimeout(() => {
-    toast.style.display = "none";
-  }, 2400);
-}
-
-async function primewebHandleContactForm(form) {
-  const successBox = document.getElementById("formSuccess");
-  const errorBox = document.getElementById("formError");
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    successBox.style.display = "none";
-    errorBox.style.display = "none";
-
-    try {
-      const formData = new FormData(form);
-      const name = String(formData.get("name") || "").trim();
-      const company = String(formData.get("company") || "").trim();
-      const email = String(formData.get("email") || "").trim();
-      const phone = String(formData.get("phone") || "").trim();
-      const packageName = String(formData.get("projectType") || "").trim();
-      const website = String(formData.get("website") || "").trim();
-      const message = String(formData.get("message") || "").trim();
-      const companyOrName = company || name || "Neue Website-Anfrage";
-      const now = new Date().toISOString();
-
-      await primewebSaveLead({
-        id: Date.now(),
-        firma: companyOrName,
-        ort: "",
-        branche: "",
-        website,
-        problem: message || "Neue Anfrage über die Website",
-        paket: packageName || "Beratung",
-        preis: 0,
-        tel: phone,
-        email,
-        prio: "HOCH",
-        status: "Offen",
-        notiz: "Website-Anfrage von " + (name || companyOrName),
-        source: "Website",
-        createdAt: now,
-        updatedAt: now,
-        history: [{ date: now, text: "Lead über Website-Formular erfasst" }]
-      });
-
-      // E-Mail-Benachrichtigung über die eigene Funktion (Vercel → Brevo) statt FormSubmit.co
-      try {
-        await fetch("https://prime-web-design-github-io.vercel.app/api/lead", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            source: "formular",
-            name,
-            company,
-            email,
-            phone,
-            package: packageName,
-            website,
-            message
-          })
-        });
-      } catch (_) { /* Email-Fehler nicht kritisch */ }
-
-      form.reset();
-      successBox.style.display = "block";
-    } catch (error) {
-      errorBox.style.display = "block";
-    }
-  });
-}
-
-function primewebWireFaqToggles() {
-  document.querySelectorAll("[data-rotate-icon]").forEach((details) => {
-    details.addEventListener("toggle", () => {
-      const icon = details.querySelector("[data-faq-icon]");
-      if (!icon) return;
-      icon.textContent = details.open ? "×" : "+";
-    });
-  });
-}
-
-// Google Tag Manager erst nach Einwilligung laden (vorher: lud immer, unabhängig vom Banner)
-function primewebLoadGtm() {
-  if (window.primewebGtmLoaded) return;
-  window.primewebGtmLoaded = true;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-  const s = document.createElement("script");
-  s.async = true;
-  s.src = "https://www.googletagmanager.com/gtm.js?id=GTM-N4ML7QKC";
-  document.head.appendChild(s);
-}
-
-// Einwilligung widerrufen / neu wählen (Link „Cookie-Einstellungen“ im Footer)
-function primewebResetCookieConsent() {
-  try { localStorage.removeItem(PRIMEWEB_COOKIE_CONSENT); } catch (_) { }
-  window.location.reload();
-}
-
-function primewebInitCookieBanner() {
-  const banner = document.getElementById("cookieBanner");
-  const accept = document.getElementById("cookieAccept");
-  const decline = document.getElementById("cookieDecline");
-
-  if (!banner || !accept || !decline) return;
-  if (localStorage.getItem(PRIMEWEB_COOKIE_CONSENT) === "accepted") primewebLoadGtm();
-  if (localStorage.getItem(PRIMEWEB_COOKIE_CONSENT)) {
-    banner.hidden = true;
-    banner.style.display = "none";
-    return;
-  }
-
-  setTimeout(() => {
-    banner.hidden = false;
-    banner.style.display = "";
-    banner.classList.add("is-visible");
-  }, 700);
-
-  function setConsent(value) {
-    localStorage.setItem(PRIMEWEB_COOKIE_CONSENT, value);
-    banner.classList.add("is-leaving");
-    setTimeout(() => {
-      banner.hidden = true;
-      banner.style.display = "none";
-      banner.classList.remove("is-visible", "is-leaving");
-    }, 340);
-  }
-
-  accept.addEventListener("click", () => { setConsent("accepted"); primewebLoadGtm(); });
-  decline.addEventListener("click", () => setConsent("necessary"));
-}
-
-function primewebInitHeroStageMotion() {
-  const stage = document.querySelector(".hero-stage");
-  if (!stage || window.matchMedia("(max-width: 760px)").matches) return;
-
-  const current = {
-    rotateX: 0,
-    rotateY: 0,
-    shiftX: 0,
-    shiftY: 0
-  };
-  const target = {
-    rotateX: 0,
-    rotateY: 0,
-    shiftX: 0,
-    shiftY: 0
-  };
-  let rafId = 0;
-
-  function applyStage() {
-    stage.style.setProperty("--hero-rotate-x", current.rotateX.toFixed(2) + "deg");
-    stage.style.setProperty("--hero-rotate-y", current.rotateY.toFixed(2) + "deg");
-    stage.style.setProperty("--hero-shift-x", current.shiftX.toFixed(2) + "px");
-    stage.style.setProperty("--hero-shift-y", current.shiftY.toFixed(2) + "px");
-  }
-
-  function animateStage() {
-    const ease = 0.11;
-    current.rotateX += (target.rotateX - current.rotateX) * ease;
-    current.rotateY += (target.rotateY - current.rotateY) * ease;
-    current.shiftX += (target.shiftX - current.shiftX) * ease;
-    current.shiftY += (target.shiftY - current.shiftY) * ease;
-    applyStage();
-
-    const settled =
-      Math.abs(target.rotateX - current.rotateX) < 0.01 &&
-      Math.abs(target.rotateY - current.rotateY) < 0.01 &&
-      Math.abs(target.shiftX - current.shiftX) < 0.01 &&
-      Math.abs(target.shiftY - current.shiftY) < 0.01;
-
-    if (!settled) {
-      rafId = requestAnimationFrame(animateStage);
-    } else {
-      rafId = 0;
-    }
-  }
-
-  function queueAnimation() {
-    if (!rafId) {
-      rafId = requestAnimationFrame(animateStage);
-    }
-  }
-
-  function resetStage() {
-    target.rotateX = 0;
-    target.rotateY = 0;
-    target.shiftX = 0;
-    target.shiftY = 0;
-    queueAnimation();
-  }
-
-  stage.addEventListener("mousemove", (event) => {
-    const rect = stage.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width;
-    const py = (event.clientY - rect.top) / rect.height;
-    target.rotateY = (px - 0.5) * 5.5;
-    target.rotateX = (0.5 - py) * 4.5;
-    target.shiftX = (px - 0.5) * 12;
-    target.shiftY = (py - 0.5) * 9;
-    queueAnimation();
-  });
-
-  stage.addEventListener("mouseleave", resetStage);
-  applyStage();
-}
-
-window.primeweb = {
-  primewebReadAllLeads,
-  primewebSaveLead,
-  primewebDeleteLead,
-  primewebReplaceAllLeads,
-  primewebMergeLeads,
-  primewebExportJson,
-  primewebHash,
-  primewebIsAuthenticated,
-  primewebSetAuthenticated,
-  primewebToast,
-  primewebEscape,
-  primewebFormatDate,
-  primewebNormalizeLead,
-  primewebStatusClass,
-  primewebPriorityClass,
-  primewebResearchBadge,
-  primewebHandleContactForm,
-  primewebWireFaqToggles,
-  primewebInitCookieBanner,
-  primewebResetCookieConsent,
-  primewebInitHeroStageMotion,
-  PRIMEWEB_ADMIN_HASH,
-  PRIMEWEB_STATUS_ORDER
-};
-
-/* ── Reveal Animation ── */
+/* PrimeWeb Design – Entwurf 11 „Obsidian Gallery“ – Interaktion
+   Grundlage: app.js aus Entwurf 01 (Obsidian 3D), Navigation/Geräte/Zahlen aus Entwurf 03,
+   Parallaxe/Paket-Links aus Entwurf 07. GSAP 3.12.5 + ScrollTrigger, Lenis 1.1.18 (optional). */
 (function () {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+  'use strict';
+
+  const root = document.documentElement;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  const isNarrow = window.matchMedia('(max-width: 760px)').matches;
+  const isSmall = window.matchMedia('(max-width: 900px)').matches;
+  // Sehr hohe Fenster (Ganzseiten-Screenshots, Druck) bekommen keine Scroll-Inszenierung,
+  // damit alle Inhalte im Endzustand sichtbar sind.
+  const tallViewport = window.innerHeight > 2000;
+  const noAnim = reduced || tallViewport;
+  if (noAnim) root.classList.add('no-anim');
+  // Ganzseiten-Ansicht/Druck: alle Bilder sofort laden, damit nichts leer bleibt
+  if (tallViewport) document.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
+
+  const hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+  if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- Navigation: Burger (01) + Ausblenden beim Runterscrollen (03) ---------- */
+  const nav = document.querySelector('.top-nav');
+  const toggle = document.querySelector('.nav-toggle');
+  let lastY = window.pageYOffset;
+  let ticking = false;
+  const onScroll = () => {
+    const y = window.pageYOffset;
+    nav.classList.toggle('is-scrolled', y > 20);
+    if (!nav.classList.contains('nav-open')) {
+      if (y > 140 && y > lastY + 4) nav.classList.add('is-hidden');
+      else if (y < lastY - 4 || y <= 140) nav.classList.remove('is-hidden');
+    }
+    lastY = y;
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Menü öffnen');
+    }));
+  }
+
+  /* ---------- Lenis Smooth-Scroll (optional) ---------- */
+  let lenis = null;
+  const noSmooth = /[?&]nosmooth/.test(location.search); // Test: Smooth-Scroll aus
+  if (!noAnim && !isTouch && !noSmooth && typeof window.Lenis !== 'undefined' && hasGsap) {
+    try {
+      lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href');
+          if (id.length < 2) return;
+          const target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -70, duration: 1.4 });
+          history.replaceState(null, '', id);
+        });
+      });
+    } catch (err) { lenis = null; }
+  }
+
+  /* ---------- Headline buchstabenweise (01) ---------- */
+  const title = document.querySelector('[data-split]');
+  if (title) {
+    const plain = title.textContent.replace(/\s+/g, ' ').trim();
+    title.setAttribute('aria-label', plain);
+    title.querySelectorAll('.line').forEach(line => {
+      const words = line.textContent.trim().split(/\s+/);
+      line.textContent = '';
+      line.setAttribute('aria-hidden', 'true');
+      words.forEach((w, wi) => {
+        const ws = document.createElement('span');
+        ws.className = 'word';
+        [...w].forEach(ch => {
+          const cs = document.createElement('span');
+          cs.className = 'ch';
+          cs.textContent = ch;
+          ws.appendChild(cs);
+        });
+        line.appendChild(ws);
+        if (wi < words.length - 1) line.appendChild(document.createTextNode(' '));
+      });
+    });
+    if (hasGsap && !noAnim) {
+      const chars = title.querySelectorAll('.ch');
+      gsap.set(chars, { opacity: 0, yPercent: 60, rotateX: -40, transformOrigin: '50% 100%' });
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+      tl.to(chars, { opacity: 1, yPercent: 0, rotateX: 0, duration: 1.1, stagger: { each: 0.022, from: 'start' } }, 0.25)
+        .from('.hero-top', { opacity: 0, y: -14, duration: 0.9 }, 0.1)
+        .from('.hero-sub, .hero-actions, .hero-trust', { opacity: 0, y: 24, duration: 1, stagger: 0.12 }, 0.9)
+        .from('.top-nav', { opacity: 0, y: -16, duration: 0.9, clearProps: 'all' }, 0.2);
+    }
+  }
+
+  /* ---------- Reveal per IntersectionObserver (01) + Goldlinien (07) ---------- */
+  const revealEls = document.querySelectorAll('.rv, [data-step], .rule');
+  if (noAnim || !('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('is-in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revealEls.forEach(el => io.observe(el));
+    // Sicherheitsnetz: alles, was nach 2,5 s noch im Sichtfeld und unsichtbar ist, einblenden
+    const showVisible = () => {
+      revealEls.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 1.05 && r.bottom > 0) el.classList.add('is-in');
+      });
+    };
+    setTimeout(showVisible, 2500);
+    document.addEventListener('visibilitychange', showVisible);
+  }
+
+  /* ---------- Zahlen hochzählen (03) ---------- */
+  const counters = document.querySelectorAll('[data-count]');
+  if (!noAnim && 'IntersectionObserver' in window && counters.length) {
+    const cio = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        cio.unobserve(e.target);
+        const el = e.target, end = parseInt(el.getAttribute('data-count'), 10) || 0;
+        const dur = 900;
+        let t0 = null;
+        const frame = ts => {
+          if (t0 === null) t0 = ts;
+          const p = Math.min(1, (ts - t0) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(end * eased);
+          if (p < 1) window.requestAnimationFrame(frame); else el.textContent = end;
+        };
+        el.textContent = '0';
+        window.requestAnimationFrame(frame);
+        setTimeout(() => { el.textContent = end; }, dur + 100);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => cio.observe(c));
+  }
+
+  /* ---------- 3D-Tilt + Lichtkante (01) / Goldkante auf Preiszeilen ---------- */
+  if (!isTouch && !reduced) {
+    const follow = (el, withTilt) => {
+      let raf = 0;
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          el.style.setProperty('--mx', (px * 100).toFixed(2) + '%');
+          el.style.setProperty('--my', (py * 100).toFixed(2) + '%');
+          if (withTilt) {
+            el.style.setProperty('--ry', ((px - 0.5) * 10).toFixed(2) + 'deg');
+            el.style.setProperty('--rx', ((0.5 - py) * 10).toFixed(2) + 'deg');
+          }
+        });
+      });
+      el.addEventListener('pointerleave', () => {
+        cancelAnimationFrame(raf);
+        if (withTilt) {
+          el.style.setProperty('--rx', '0deg');
+          el.style.setProperty('--ry', '0deg');
         }
       });
-    },
-    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
-  );
-
-  function initReveal() {
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    };
+    document.querySelectorAll('[data-tilt]').forEach(el => follow(el, true));
+    document.querySelectorAll('[data-glow]').forEach(el => follow(el, false));
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initReveal);
-  } else {
-    initReveal();
+  /* ---------- Laptop kippt schnell ins Bild (kein Pinning, kurzer Scrollweg) ---------- */
+  const stage = document.getElementById('laptop-stage');
+  if (stage) {
+    const setOpen = (p) => { // p: 0 → 1
+      const start = isSmall ? 12 : 14;
+      stage.style.setProperty('--open', (start * (1 - p)).toFixed(2) + 'deg');
+      stage.style.setProperty('--rise', p.toFixed(3));
+      stage.classList.toggle('is-set', p > 0.98);
+    };
+    if (noAnim || !hasGsap) {
+      setOpen(1);
+    } else {
+      const state = { p: 0 };
+      setOpen(0);
+      gsap.to(state, {
+        p: 1, ease: 'none', onUpdate: () => setOpen(state.p),
+        scrollTrigger: { trigger: stage, start: 'top 92%', end: 'top 45%', scrub: 0.4 }
+      });
+      // Leichtes Schweben, sobald der Laptop steht
+      gsap.to(stage.querySelector('.open-laptop'), { y: -6, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    }
+  }
+
+  /* ---------- Geräte kippen beim Scrollen (03) ---------- */
+  if (hasGsap && !noAnim) {
+    const amp = isSmall ? 4 : 8;
+    document.querySelectorAll('.tilt').forEach(el => {
+      const dir = parseFloat(el.getAttribute('data-dir')) || 1;
+      const trigger = el.closest('.persp') || el;
+      gsap.fromTo(el,
+        { rotateY: dir * amp, rotateX: amp * 0.5, y: isSmall ? 10 : 24 },
+        {
+          rotateY: -dir * amp, rotateX: -amp * 0.5, y: isSmall ? -10 : -24, ease: 'none',
+          scrollTrigger: { trigger, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+        });
+    });
+    const photo = document.querySelector('.stage__photo');
+    if (photo && !isSmall) {
+      gsap.fromTo(photo, { scale: 1 }, {
+        scale: 1.08, ease: 'none',
+        scrollTrigger: { trigger: '.stage', start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+      });
+    }
+    // Goldene Linie im Ablauf zeichnet sich beim Scrollen
+    const line = document.querySelector('.process-line');
+    if (line) {
+      gsap.fromTo(line, { scaleY: 0 }, {
+        scaleY: 1, ease: 'none',
+        scrollTrigger: { trigger: '.steps', start: 'top 80%', end: 'bottom 55%', scrub: 0.6 }
+      });
+    }
+  }
+
+  /* ---------- Parallaxe der Bildstudien (07) ---------- */
+  const parallaxFrames = [...document.querySelectorAll('[data-parallax]')];
+  if (!noAnim && parallaxFrames.length) {
+    let frameRequested = false;
+    const paint = () => {
+      frameRequested = false;
+      const vh = window.innerHeight;
+      parallaxFrames.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom < -60 || rect.top > vh + 60) return;
+        const distance = (vh / 2 - rect.top - rect.height / 2) / (vh + rect.height);
+        const limit = Math.min(26, rect.height * 0.045);
+        const shift = Math.max(-limit, Math.min(limit, distance * rect.height * 0.14));
+        el.style.setProperty('--shift', shift.toFixed(2) + 'px');
+      });
+    };
+    const request = () => { if (!frameRequested) { frameRequested = true; requestAnimationFrame(paint); } };
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request, { passive: true });
+    window.addEventListener('load', request);
+    request();
+  }
+
+  /* ---------- Paket-Links setzen die Projektart vor (07) ---------- */
+  const projectType = document.getElementById('f-type');
+  if (projectType) {
+    document.querySelectorAll('[data-package]').forEach(link => {
+      link.addEventListener('click', () => {
+        const wanted = link.dataset.package;
+        const opt = [...projectType.options].find(o => o.value === wanted || o.textContent.trim().startsWith(wanted));
+        if (opt) { projectType.value = opt.value; projectType.dispatchEvent(new Event('change', { bubbles: true })); }
+      });
+    });
+  }
+
+  /* ---------- Formular (01) ---------- */
+  const form = document.getElementById('lead-form');
+  const status = document.getElementById('form-status');
+  const submit = document.getElementById('form-submit');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.className = 'form-status';
+      status.textContent = '';
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const fd = new FormData(form);
+      const body = {
+        source: 'formular',
+        name: fd.get('name') || '',
+        company: fd.get('company') || '',
+        email: fd.get('email') || '',
+        phone: fd.get('phone') || '',
+        package: fd.get('projectType') || '',
+        website: fd.get('website') || '',
+        message: fd.get('message') || ''
+      };
+      submit.disabled = true;
+      const label = submit.innerHTML;
+      submit.textContent = 'Wird gesendet …';
+      try {
+        const res = await fetch('https://prime-web-design-github-io.vercel.app/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        status.className = 'form-status ok';
+        status.textContent = 'Danke! Marc meldet sich persönlich – meist innerhalb von 24 Stunden.';
+        form.reset();
+      } catch (err) {
+        status.className = 'form-status err';
+        status.textContent = 'Das hat leider nicht geklappt. Bitte versuch es noch einmal oder schreib direkt an marc@primeweb-design.de.';
+      } finally {
+        submit.disabled = false;
+        submit.innerHTML = label;
+      }
+    });
   }
 })();

@@ -1,441 +1,52 @@
-﻿<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html>
+<html lang="de" class="no-js">
 <head>
-  <!-- Google Tag Manager: wird erst nach Einwilligung im Cookie-Banner geladen (primewebLoadGtm in primeweb-highend/app.js) -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeWeb Design | Webdesign Rüdesheim, Rheingau & Hessen – Premium Websites</title>
-  <meta name="description" content="Professionelles Webdesign aus Rüdesheim am Rhein für Handwerker, Dienstleister und lokale Unternehmen in Hessen & Rheinland-Pfalz. Festpreise ab 499 €. Jetzt kostenlose Ersteinschätzung.">
-  <meta name="keywords" content="Webdesign Rüdesheim, Webdesign Rheingau, Webdesign Hessen, Webdesign Rheinland-Pfalz, Webdesign Frankfurt, Website erstellen lassen, Webdesign Handwerk, professionelle Website, Webdesign Wiesbaden, Webdesign Mainz">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrimeWeb Design – Webdesign aus Rüdesheim am Rhein | Rheingau, Hessen &amp; deutschlandweit</title>
+  <meta name="description" content="Hochwertige Webseiten zum Festpreis, persönlich gebaut von Marc Daub in Rüdesheim am Rhein. Landing Page ab 990 €, Signature Website ab 2.990 €. Kostenloses Erstgespräch, Antwort in 24 Stunden.">
+  <meta name="theme-color" content="#070a10">
+  <meta name="keywords" content="Webdesign Rüdesheim, Webdesign Rheingau, Webdesign Hessen, Webdesign Wiesbaden, Webdesign Mainz, Website erstellen lassen, Webdesign Handwerk, Webdesign Praxis, Landing Page, Online-Shop, Marc Daub">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0a0d12">
-
   <meta property="og:type" content="website">
-  <meta property="og:title" content="PrimeWeb Design | Luxus Webdesign mit starker Wirkung">
-  <meta property="og:description" content="Premium Webseiten mit gold-schwarzer Bildsprache, klarer Positionierung und internem Lead-Workflow.">
+  <meta property="og:title" content="PrimeWeb Design – Webdesign aus Rüdesheim am Rhein">
+  <meta property="og:description" content="Hochwertige Webseiten zum Festpreis, persönlich gebaut von Marc Daub in Rüdesheim am Rhein. Landing Page ab 990 €, Signature Website ab 2.990 €. Kostenloses Erstgespräch, Antwort in 24 Stunden.">
   <meta property="og:url" content="https://primeweb-design.de">
   <meta property="og:image" content="https://primeweb-design.de/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="PrimeWeb Design">
-
   <link rel="canonical" href="https://primeweb-design.de">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23090c11'/><rect x='6' y='6' width='88' height='88' rx='18' fill='none' stroke='%23d6b06a' stroke-width='2.5'/><text x='50' y='66' text-anchor='middle' font-size='56' font-family='Georgia,serif' font-weight='700' fill='%23f1d89c'>P</text></svg>">
   <!-- Schriften lokal (keine Verbindung zu Google beim Seitenaufruf) -->
   <style>
-    @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500 700; font-display: swap; src: url("./fonts/cormorant-garamond-latin.woff2") format("woff2"); }
-    @font-face { font-family: "Manrope"; font-style: normal; font-weight: 400 800; font-display: swap; src: url("./fonts/manrope-latin.woff2") format("woff2"); }
+    @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 300 700; font-display: swap; src: url("./fonts/cormorant-garamond-latin.woff2") format("woff2"); }
+    @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 300 700; font-display: swap; src: url("./fonts/cormorant-garamond-italic-latin.woff2") format("woff2"); }
+    @font-face { font-family: "Manrope"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("./fonts/manrope-latin.woff2") format("woff2"); }
   </style>
-  <link rel="stylesheet" href="./primeweb-highend/style.css?v=4">
-  <style>
-  .wa-float.luxury-whatsapp {
-    position: fixed;
-    width: auto;
-    height: auto;
-    min-height: 48px;
-    padding: 0 16px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #25d366, #128c4a);
-      color: #ffffff;
-      box-shadow: 0 12px 26px rgba(18, 140, 74, 0.2);
-    font-family: var(--font-body, "Manrope", sans-serif);
-    font-size: 13px;
-    font-weight: 800;
-    left: 18px;
-    bottom: 70px;
-    z-index: 120;
+  <link rel="stylesheet" href="./primeweb-highend/style.css?v=6">
+  <script>document.documentElement.classList.replace('no-js','js');</script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./primeweb-highend/vendor/three.module.min.js",
+      "three/addons/": "./primeweb-highend/vendor/addons/"
+    }
   }
-
-    .wa-float.luxury-whatsapp svg {
-      width: 16px;
-      height: 16px;
-      flex: 0 0 16px;
-    }
-
-    .luxury-contact-grid {
-      align-items: stretch;
-      gap: 24px;
-    }
-
-    .luxury-contact-copy,
-    .luxury-form-wrap {
-      border-radius: 28px;
-      border: 1px solid rgba(214, 176, 106, 0.12);
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.16);
-    }
-
-    .luxury-contact-copy {
-      padding: 34px;
-    }
-
-    .luxury-contact-copy h2 {
-      margin-bottom: 14px;
-      line-height: 1.06;
-    }
-
-    .luxury-contact-copy p {
-      color: rgba(255, 244, 220, 0.76);
-      max-width: 54ch;
-    }
-
-    .contact-luxury-cards {
-      margin-top: 22px;
-      gap: 12px;
-    }
-
-    .contact-luxury-cards > div {
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(214, 176, 106, 0.1);
-    }
-
-    .luxury-form-wrap {
-      padding: 28px;
-      background: linear-gradient(180deg, rgba(17, 20, 26, 0.96), rgba(24, 20, 14, 0.98));
-    }
-
-    .luxury-form {
-      display: grid;
-      gap: 16px;
-    }
-
-    .form-grid {
-      gap: 14px 18px;
-    }
-
-    .field {
-      display: grid;
-      gap: 8px;
-      align-content: start;
-    }
-
-    .field label,
-    .consent {
-      color: #f4ead2;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .field label {
-      font-weight: 700;
-    }
-
-    .luxury-form input,
-    .luxury-form select,
-    .luxury-form textarea {
-      width: 100%;
-      min-height: 54px;
-      padding: 13px 15px;
-      border-radius: 14px;
-      border: 1px solid rgba(214, 176, 106, 0.18);
-      background: rgba(27, 30, 38, 0.9);
-      color: #131b24;
-      box-shadow: none;
-      transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .luxury-form textarea {
-      min-height: 128px;
-      resize: vertical;
-      line-height: 1.55;
-    }
-
-    .luxury-form input::placeholder,
-    .luxury-form textarea::placeholder {
-      color: rgba(248, 244, 234, 0.34);
-    }
-
-    .luxury-form input:focus,
-    .luxury-form select:focus,
-    .luxury-form textarea:focus {
-      outline: 0;
-      border-color: rgba(214, 176, 106, 0.48);
-      box-shadow: 0 0 0 4px rgba(214, 176, 106, 0.08);
-      background: rgba(31, 35, 44, 0.98);
-    }
-
-    .consent {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px;
-      align-items: start;
-      margin-top: -2px;
-    }
-
-    .consent input {
-      margin-top: 3px;
-      width: 18px;
-      height: 18px;
-      min-height: 18px;
-      padding: 0;
-      border-radius: 5px;
-    }
-
-    .success-box,
-    .error-box {
-      border-radius: 14px;
-      padding: 12px 14px;
-    }
-
-    .wide-btn {
-      width: 100%;
-      min-height: 58px;
-      border-radius: 18px;
-      font-size: 15px;
-      letter-spacing: -0.01em;
-      box-shadow: 0 14px 28px rgba(214, 176, 106, 0.18);
-    }
-
-    .inline-note {
-      margin-top: 2px;
-      color: rgba(248, 244, 234, 0.78);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .luxury-legal {
-      padding: 28px 0 24px;
-    }
-
-    .legal-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      align-items: start;
-    }
-
-    .legal-card {
-      border-radius: 24px;
-      border: 1px solid rgba(214, 176, 106, 0.12);
-      background: linear-gradient(180deg, #ffffff, #f9f4ec);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
-      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .legal-card:hover {
-      border-color: rgba(214, 176, 106, 0.24);
-      transform: translateY(-1px);
-      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.18);
-    }
-
-    .legal-card[open] {
-      border-color: rgba(214, 176, 106, 0.28);
-    }
-
-    .legal-card summary {
-      color: #131b24;
-      min-height: 86px;
-      padding: 24px 26px;
-      font-size: 15px;
-      letter-spacing: -0.01em;
-    }
-
-    .legal-icon {
-      display: inline-grid;
-      place-items: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: rgba(214, 176, 106, 0.1);
-      color: #e5bc72;
-      font-size: 20px;
-      line-height: 1;
-      flex: 0 0 28px;
-    }
-
-    .legal-copy {
-      padding: 0 26px 24px;
-      color: rgba(19, 27, 36, 0.78);
-      font-size: 14px;
-      line-height: 1.72;
-    }
-
-    .legal-copy p,
-    .legal-copy address {
-      margin: 0 0 14px;
-    }
-
-    .legal-copy p:last-child,
-    .legal-copy address:last-child {
-      margin-bottom: 0;
-    }
-
-    .legal-copy a {
-      color: #a07828;
-    }
-
-    .legal-note {
-      margin: 14px 4px 0;
-      max-width: 72ch;
-      color: rgba(19, 27, 36, 0.55);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .luxury-footer {
-      padding: 38px 0 28px;
-    }
-
-    .footer-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
-      align-items: center;
-      gap: 24px 40px;
-    }
-
-    .footer-brand-block {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      min-width: 0;
-    }
-
-    .footer-monogram {
-      display: grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      border: 1px solid rgba(214, 176, 106, 0.18);
-      background: rgba(214, 176, 106, 0.08);
-      color: #a07828;
-      font-family: var(--font-head, "Cormorant Garamond", serif);
-      font-size: 26px;
-      font-weight: 700;
-      flex: 0 0 48px;
-    }
-
-    .footer-brand-block strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 16px;
-      line-height: 1.2;
-      color: #131b24;
-    }
-
-    .footer-brand-block .muted {
-      display: block;
-      color: rgba(19, 27, 36, 0.62);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-      gap: 12px 24px;
-    }
-
-    .footer-links a {
-      color: rgba(19, 27, 36, 0.68);
-      font-size: 14px;
-      line-height: 1.4;
-      white-space: nowrap;
-    }
-
-    .footer-luxury-line {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(214, 176, 106, 0.1);
-    }
-
-    .footer-luxury-line span {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 0 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(214, 176, 106, 0.1);
-      color: rgba(19, 27, 36, 0.5);
-      font-size: 12px;
-      letter-spacing: 0.01em;
-    }
-
-    @media (max-width: 760px) {
-      .wa-float.luxury-whatsapp {
-        min-height: 46px;
-        padding: 0 14px;
-        font-size: 12px;
-        left: 14px;
-        bottom: 70px;
-      }
-
-      .luxury-contact-copy,
-      .luxury-form-wrap {
-        padding: 22px;
-      }
-
-      .form-grid {
-        gap: 12px;
-      }
-
-      .legal-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .legal-card summary {
-      color: #131b24;
-        min-height: 74px;
-        padding: 20px 22px;
-      }
-
-      .legal-copy {
-        padding: 0 22px 20px;
-      }
-
-      .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .footer-brand-block {
-        align-items: flex-start;
-      }
-
-      .footer-links {
-        justify-content: flex-start;
-      }
-
-      .footer-links a {
-        white-space: normal;
-      }
-
-      .footer-luxury-line {
-        margin-top: 18px;
-      }
-    }
-
-    #anfrage input, #anfrage select, #anfrage textarea {
-      color: #f0eada !important;
-      caret-color: #f0eada !important;
-    }
-    #anfrage input::placeholder, #anfrage textarea::placeholder {
-      color: rgba(240, 234, 218, 0.45) !important;
-    }
-    #anfrage input:-webkit-autofill,
-    #anfrage input:-webkit-autofill:focus {
-      -webkit-text-fill-color: #f0eada !important;
-      -webkit-box-shadow: 0 0 0px 1000px #1c2030 inset !important;
-    }
-  </style>
-
-  <!-- Strukturierte Daten (JSON-LD / LocalBusiness) -->
+  </script>
+  <script src="./primeweb-highend/vendor/gsap.min.js" defer></script>
+  <script src="./primeweb-highend/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="./primeweb-highend/vendor/lenis.min.js" defer></script>
+  <script src="./primeweb-highend/app.js?v=4" defer></script>
+  <script type="module" src="./primeweb-highend/hero3d.js?v=1"></script>
+  <!-- Gestaltung „Obsidian Gallery“ (Entwurf 11, November 2026). bilder/studie-*.webp sind KI-generierte Bildstudien, referenz-*.webp die echte Kundenreferenz. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "PrimeWeb Design",
-    "description": "Professionelles Webdesign aus Rüdesheim am Rhein für Handwerker, Dienstleister und lokale Unternehmen in Hessen und Rheinland-Pfalz.",
+    "description": "Hochwertige Webseiten zum Festpreis, persönlich gebaut von Marc Daub in Rüdesheim am Rhein. Landing Page ab 990 €, Signature Website ab 2.990 €. Kostenloses Erstgespräch, Antwort in 24 Stunden.",
     "url": "https://primeweb-design.de",
     "telephone": "+4915781774883",
     "email": "marc@primeweb-design.de",
@@ -449,683 +60,619 @@
     "founder": { "@type": "Person", "name": "Marc Daub" },
     "priceRange": "€€",
     "areaServed": ["Rüdesheim am Rhein", "Rheingau", "Wiesbaden", "Frankfurt am Main", "Mainz", "Hessen", "Rheinland-Pfalz", "Deutschland"],
-    "serviceType": ["Webdesign", "Webentwicklung", "Luxus Webdesign", "Landing Page", "Online-Shop", "Website für Handwerker", "Website für Dienstleister"]
+    "serviceType": ["Webdesign", "Webentwicklung", "Landing Page", "Signature Website", "Relaunch", "Online-Shop", "Website für Handwerker", "Website für Praxen", "Website für Dienstleister"]
   }
   </script>
-  <script defer src="/_vercel/insights/script.js"></script>
-  <!-- pw-design:start (wird vom Admin-Bereich verwaltet) -->
-  <style id="pw-design">
-/*pw-json:{"vars":{},"eigenesCss":"","schriften":[],"hintergruende":{".bgx-swl5h3":{"art":"bild","bild":"bilder/screenshot-2026-11-08-220045.png","abdunkeln":0,"groesse":"cover","position":"center"},".bgx-pp57fh":{"art":"bild","bild":"bilder/screenshot-2026-11-08-220804.png","abdunkeln":0,"groesse":"contain","position":"center"},".bgx-60synb":{"art":"bild","bild":"bilder/screenshot-2026-11-08-222139.png","abdunkeln":0,"groesse":"cover","position":"center"},".bgx-kstadt":{"art":"bild","bild":"bilder/karte-stadtlichter.webp","abdunkeln":25,"groesse":"cover","position":"center"},".bgx-wzdngw":{"art":"bild","bild":"bilder/karte-sportwagen.webp","abdunkeln":25,"groesse":"cover","position":"50% 60%"},".bgx-klaser":{"art":"bild","bild":"bilder/karte-laserlicht.webp","abdunkeln":25,"groesse":"cover","position":"center"}}}:pw-json*/
-
-:root {
-
-}
-/* Hintergründe */
-.bgx-swl5h3 { background-color: transparent !important; background-image: url("bilder/screenshot-2026-11-08-220045.png") !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; }
-.bgx-pp57fh { background-color: transparent !important; background-image: url("bilder/screenshot-2026-11-08-220804.png") !important; background-size: contain !important; background-position: center !important; background-repeat: no-repeat !important; }
-.bgx-60synb { background-color: transparent !important; background-image: url("bilder/screenshot-2026-11-08-222139.png") !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; }
-.bgx-kstadt { background-color: transparent !important; background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url("bilder/karte-stadtlichter.webp") !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; }
-.bgx-wzdngw { background-color: transparent !important; background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url("bilder/karte-sportwagen.webp") !important; background-size: cover !important; background-position: 50% 60% !important; background-repeat: no-repeat !important; }
-.bgx-klaser { background-color: transparent !important; background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url("bilder/karte-laserlicht.webp") !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; }
-/* Eigenes CSS */
-
-  </style>
-  <!-- pw-design:end -->
 </head>
-<body class="luxury-body">
-  <!-- Barrierefreiheit: Direkt zum Inhalt springen -->
-  <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
-  <div class="luxury-noise" aria-hidden="true"></div>
-
-  <header class="topbar luxury-topbar">
-    <div class="container topbar-inner">
-      <a class="brand luxury-brand" href="#top" aria-label="PrimeWeb Design – Startseite">
-        <span class="brand-mark luxury-mark" aria-hidden="true">P</span>
-        <span>
-          <strong>PrimeWeb Design</strong>
-          <span>Luxury Digital Presence</span>
-        </span>
-      </a>
-      <nav class="top-actions" aria-label="Hauptnavigation">
-        <span class="top-note luxury-note">Premium Websites für starke erste Eindrücke</span>
-        <a class="btn btn-primary gold-btn" href="#anfrage">Kostenlose Ersteinschätzung</a>
-      </nav>
+<header class="top-nav" id="top">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#start" aria-label="PrimeWeb Design – zum Seitenanfang">
+      <span class="brand-mark" aria-hidden="true"></span>
+      PrimeWeb Design <small>Rüdesheim am Rhein</small>
+    </a>
+    <nav aria-label="Hauptnavigation">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#warum">Warum</a></li>
+        <li><a href="#arbeiten">Arbeiten</a></li>
+        <li><a href="#leistungen">Leistungen &amp; Preise</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#ueber">Über Marc</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-gold btn-sm nav-cta" href="#kontakt">Kostenloses Erstgespräch <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <div class="container">
-    <section class="hero luxury-hero" id="top" aria-label="Hero">
-      <div class="luxury-hero-grid">
-        <div class="luxury-hero-copy">
-          <div class="luxury-kicker reveal">Webdesign aus Rüdesheim am Rhein</div>
-          <h1 class="luxury-title reveal delay-1">Webseiten mit Luxuswirkung für Unternehmen, die sichtbar über Standard stehen wollen.</h1>
-          <p class="luxury-lead reveal delay-2">
-            Ich entwickle Premium-Webseiten mit klarer Positionierung, filmischer Bildsprache und einer visuellen Ruhe, die sofort nach Wertigkeit aussieht. Kein Baukasten-Look. Kein Agentur-Einheitsbrei. Sondern ein digitaler Auftritt, der sich nach Niveau, Souveränität und echter Klasse anfühlt — für Unternehmen im Rheingau, Hessen und ganz Deutschland.
-          </p>
-          <div class="luxury-hero-actions reveal delay-3">
-            <a class="btn btn-primary gold-btn" href="#anfrage">Projekt anfragen</a>
-            <a class="btn btn-secondary luxury-secondary" href="#showcase">Arbeit ansehen</a>
-          </div>
-          <div class="luxury-signals reveal delay-4">
-            <div>
-              <strong>Premium Look</strong>
-              <span>hochwertige Gestaltung statt austauschbarer Landingpage</span>
-            </div>
-            <div>
-              <strong>Klare Conversion</strong>
-              <span>schöne Ästhetik mit Struktur, Tiefe und Anfrageführung</span>
-            </div>
-            <div>
-              <strong>Interner Workflow</strong>
-              <span>neue Anfragen landen direkt im Lead-System</span>
-            </div>
-          </div>
+<main id="inhalt">
+  <!-- ===== EXPONAT 01: HERO ===== -->
+  <section class="hero" id="start" aria-labelledby="hero-heading">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-fallback" aria-hidden="true"><div class="monolith"></div></div>
+    <div class="wrap hero-inner">
+      <div class="hero-top">
+        <p class="eyebrow">Webdesign &amp; Entwicklung · Rüdesheim am Rhein</p>
+        <span class="number" aria-label="Exponat 01">01</span>
+      </div>
+      <div class="hero-copy">
+        <h1 class="hero-title" id="hero-heading" data-split>
+          <span class="line">Dein Unternehmen ist besser als deine Webseite.</span>
+          <em class="line">Ändern wir das.</em>
+        </h1>
+        <p class="hero-sub">Hochwertige Webseiten, die nach Qualität aussehen und Anfragen bringen – persönlich vom Inhaber gebaut, zum Festpreis, mit kurzen Wegen. Für Handwerk, Praxen, Studios, Dienstleister und den B2B-Mittelstand im Rheingau, in Hessen und deutschlandweit.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#kontakt">Kostenloses Erstgespräch <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#arbeiten">Arbeiten ansehen <span class="btn__arrow" aria-hidden="true">→</span></a>
         </div>
+        <p class="hero-trust"><span>Persönlich vom Inhaber</span><span>Festpreise</span><span>Antwort in 24 h</span></p>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">Scrollen <i></i></div>
+  </section>
 
-        <div class="luxury-hero-visual reveal delay-2" aria-hidden="true">
-          <div class="hero-stage">
-            <div class="hero-stage-grid" style="height: 1373px !important; min-height: 1373px !important;"></div>
-            <div class="hero-stage-glow hero-stage-glow-one"></div>
-            <div class="hero-stage-glow hero-stage-glow-two"></div>
-            <div class="hero-stage-particles hero-stage-particles-left"></div>
-            <div class="hero-stage-particles hero-stage-particles-right"></div>
-            <div class="hero-laptop">
-              <div class="hero-laptop-screen">
-                <div class="hero-laptop-camera"></div>
-                <div class="hero-laptop-browser">
-                  <div class="hero-laptop-dots" style="height: 54px !important; min-height: 54px !important; width: 19% !important; max-width: 19% !important;">
-                    <span style="background-color: #ff0000 !important; filter: brightness(100%) !important; box-shadow: #ff0000 0px 0px 12px 4px !important; border-color: #ff0000 !important;"></span><span style="background-color: #59ff00 !important; filter: brightness(100%) !important; box-shadow: #59ff00 0px 0px 12px 4px !important; border-color: #59ff00 !important;"></span><span style="background-color: #fff700 !important; filter: brightness(100%) !important; box-shadow: #fff700 0px 0px 12px 4px !important; border-color: #fff700 !important;"></span>
-                  </div>
-                  <div class="hero-laptop-address">https://primeweb-design.de</div>
-                </div>
-                <div class="hero-laptop-display">
-                  <div class="search-mock">
-                    <div class="search-mock-header">
-                      <div class="search-mock-brand">Google</div>
-                      <div class="search-mock-query">primeweb design</div>
-                    </div>
-                    <div class="search-mock-tabs">
-                      <span class="active">Alle</span>
-                      <span>Bilder</span>
-                      <span>Videos</span>
-                      <span>Maps</span>
-                      <span>Mehr</span>
-                    </div>
-                    <div class="search-mock-body">
-                      <div class="search-mock-results">
-                        <div class="search-result-count">Ungefähr 1 Ergebnis (0,29 Sekunden)</div>
-                        <div class="search-result-featured">
-                          <div class="search-result-source">
-                            <span class="search-result-site">PrimeWeb Design</span>
-                            <span class="search-result-url">https://primeweb-design.de</span>
-                          </div>
-                          <h3>PrimeWeb Design | Luxus Webdesign mit starker Wirkung</h3>
-                          <p>Premium Webseiten mit schwarzer Ruhe, goldenen Akzenten und klarer Anfrageführung für Unternehmen mit Anspruch.</p>
-                          <div class="search-result-links">
-                            <span>Leistungen</span>
-                            <span>Showcase</span>
-                            <span>Kontakt</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="hero-laptop-base"></div>
-              <div class="hero-laptop-shadow"></div>
+  <!-- ===== GERÄTE-BÜHNE (03, dunkel) ===== -->
+  <section class="stage-section" aria-label="Referenzprojekt auf Laptop und Smartphone">
+    <div class="wrap wrap-wide">
+      <div class="stage persp">
+        <img class="stage__photo" src="bilder/studie-galerie-laptop.webp" width="1672" height="941" alt="" fetchpriority="high">
+        <div class="device laptop tilt" data-dir="1">
+          <div class="laptop__lid">
+            <span class="cam" aria-hidden="true"></span>
+            <div class="screen">
+              <img src="bilder/referenz-desktop.webp" width="1440" height="900" alt="Startseite eines B2B-Fertigungsunternehmens – Referenzprojekt von PrimeWeb Design" fetchpriority="high">
             </div>
+          </div>
+          <div class="laptop__base" aria-hidden="true"></div>
+        </div>
+        <div class="device phone tilt" data-dir="-1">
+          <span class="island" aria-hidden="true"></span>
+          <div class="screen">
+            <img src="bilder/referenz-handy.webp" width="780" height="1688" alt="" class="phone__img">
           </div>
         </div>
       </div>
+    </div>
+    <figure class="stage-caption">
+      <figcaption class="caption">
+        <span><span class="number">01</span>Echte Referenz · B2B-Fertigungsunternehmen, Relaunch</span>
+        <span>Bühne: KI-generierte Bildstudie · Bildschirminhalt: echtes Kundenprojekt</span>
+      </figcaption>
+    </figure>
+  </section>
 
-      <div class="luxury-marquee reveal delay-4" aria-hidden="true">
-        <span>Luxury Webdesign</span>
-        <span>Gold &amp; Black Identity</span>
-        <span>Premium Visual Systems</span>
-        <span>Lead Workflow Ready</span>
-        <span>Luxury Webdesign</span>
-        <span>Gold &amp; Black Identity</span>
+  <!-- ===== ZAHLENBAND (03) ===== -->
+  <section class="numbers" aria-label="Fakten">
+    <div class="wrap numbers__grid">
+      <div class="num rv"><p class="num__v"><span data-count="24">24</span><small>h</small></p><p class="num__l">Antwort auf jede Anfrage</p></div>
+      <div class="num rv rv-d1"><p class="num__v"><span data-count="10">10</span></p><p class="num__l">Werktage bis zur Landing Page</p></div>
+      <div class="num rv rv-d2"><p class="num__v"><span data-count="4">4</span></p><p class="num__l">Wochen bis zur Website</p></div>
+      <div class="num rv rv-d3"><p class="num__v"><span data-count="1">1</span></p><p class="num__l">Ansprechpartner – vom Gespräch bis zum Livegang</p></div>
+    </div>
+  </section>
+
+  <!-- ===== EXPONAT 02: WARUM ===== -->
+  <section class="section why" id="warum" aria-labelledby="why-heading">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="number" aria-hidden="true">02</span>
+        <p class="eyebrow">Warum eine bessere Webseite</p>
+        <span class="rule" aria-hidden="true"></span>
       </div>
-    </section>
+      <div class="why-head">
+        <figure class="why-image rv">
+          <div class="parallax" data-parallax>
+            <img src="bilder/studie-glas-messing.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Bildstudie einer feinen Messingkante an dunklem Glas im gerichteten Licht">
+          </div>
+          <figcaption class="caption"><span><span class="number">02</span>Materialstudie — Glas &amp; Messing</span><span>KI-generierte Bildstudie</span></figcaption>
+        </figure>
+        <div class="why-text">
+          <h2 id="why-heading" class="rv">Webseiten, die nach dem aussehen, <em>was du kannst.</em></h2>
+          <p class="lede rv rv-d1">Die meisten Unternehmen sind besser als ihr Auftritt im Netz. Drei Gründe, warum sich das ändern sollte – und wie.</p>
+        </div>
+      </div>
+      <div class="why-grid">
+        <div class="tilt-wrap rv">
+          <article class="card" data-tilt>
+            <div class="card-index">01</div>
+            <h3>Der erste Eindruck entscheidet in Sekunden.</h3>
+            <p>Ob dein Unternehmen hochwertig wirkt, entscheidet sich, bevor jemand eine Zeile liest. Gestaltung, Ruhe, Bildsprache – das ist dein Empfang.</p>
+            <p class="card-foot">Wirkung</p>
+          </article>
+        </div>
+        <div class="tilt-wrap rv rv-d1">
+          <article class="card" data-tilt>
+            <div class="card-index">02</div>
+            <h3>Klarheit statt Baukasten.</h3>
+            <p>Eine Struktur, die zur Anfrage führt: Wer bist du, was kannst du, wie geht es weiter. Kein Umherklicken, keine Schablone von der Stange.</p>
+            <p class="card-foot">Struktur</p>
+          </article>
+        </div>
+        <div class="tilt-wrap rv rv-d2">
+          <article class="card" data-tilt>
+            <div class="card-index">03</div>
+            <h3>Du sprichst direkt mit dem, der deine Seite baut.</h3>
+            <p>Kein Projektmanager, keine Warteschleife. Du erzählst mir, was dein Unternehmen ausmacht – ich setze es um und bleibe dein Ansprechpartner.</p>
+            <p class="card-foot">Direkt</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <main id="main-content">
-      <section class="luxury-intro" aria-labelledby="intro-heading">
-        <div class="section-head light-head">
-          <div class="eyebrow luxury-eyebrow">Warum PrimeWeb</div>
-          <h2 id="intro-heading">Wenn deine Website billig aussieht, wirkt dein Unternehmen günstiger, als es ist.</h2>
-          <p>Viele Webseiten sind technisch okay, aber emotional schwach. Sie wirken generisch, verlieren Spannung und lassen jedes Unternehmen austauschbar erscheinen. PrimeWeb Design setzt bewusst auf ein edleres, markanteres und professionelleres Niveau.</p>
+  <!-- ===== EXPONAT 03: ARBEITEN ===== -->
+  <section class="section works" id="arbeiten" aria-labelledby="case-heading">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="number" aria-hidden="true">03</span>
+        <p class="eyebrow">Arbeiten</p>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="section-head split works-head">
+        <div>
+          <h2 id="case-heading" class="rv">Ein Relaunch, der <em>Anfragen</em> bringt.</h2>
         </div>
-        <div class="luxury-benefit-grid">
-          <article class="luxury-panel reveal">
-            <span class="benefit-no" aria-hidden="true">01</span>
-            <h3>Markenwirkung statt Standardlayout</h3>
-            <p>Die Seite soll nicht nur Informationen zeigen, sondern Qualität ausstrahlen. Genau das entscheidet oft über Vertrauen.</p>
-          </article>
-          <article class="luxury-panel reveal delay-1">
-            <span class="benefit-no" aria-hidden="true">02</span>
-            <h3>Kontrast, Ruhe und Wertigkeit</h3>
-            <p>Weniger Beliebigkeit, mehr Tiefe. Gold, Schwarz, Elfenbein und klare Typografie erzeugen sofort einen hochwertigeren Eindruck.</p>
-          </article>
-          <article class="luxury-panel reveal delay-2">
-            <span class="benefit-no" aria-hidden="true">03</span>
-            <h3>Starke Anfrageführung</h3>
-            <p>Schön reicht nicht. Die Struktur muss den Nutzer führen und ihn ohne Reibung zur Kontaktaufnahme bringen.</p>
-          </article>
-        </div>
-      </section>
+        <p class="lede rv rv-d1">Eine echte Referenz. Dazu drei gestalterische Richtungen, die zeigen, wie unterschiedlich dein Auftritt aussehen kann.</p>
+      </div>
+    </div>
 
-      <section id="showcase" class="luxury-showcase-section" aria-labelledby="showcase-heading">
-        <div class="section-head light-head">
-          <div class="eyebrow luxury-eyebrow">Visual Showcase</div>
-          <h2 id="showcase-heading">So fühlt sich eine Website an, wenn sie nicht wie jede zweite Agenturseite aussieht.</h2>
-          <p>Hier siehst du keine beliebigen Kacheln, sondern inszenierte Richtungen mit Case-Study-Gefühl: visuelle Autorität, luxuriöse Ruhe und ein Auftritt, der nach Anspruch aussieht.</p>
+    <!-- Block A: Text links, Laptop kippt schnell ins Bild (ohne Pinning) -->
+    <div class="wrap wrap-wide case-pin" id="case-pin">
+      <div class="case">
+        <div class="case__text">
+          <p class="eyebrow case__tag">Echte Referenz · B2B-Fertigungsunternehmen</p>
+          <h3 class="h3">Relaunch mit klarer Leistungsstruktur, Anfrageführung und technischer Sauberkeit.</h3>
+          <p>Ein Fertigungsunternehmen aus dem Metallbereich, das mehr kann, als seine alte Seite zeigte. Die neue Seite ordnet die Leistungen, führt Besucher gezielt zur Anfrage und läuft technisch sauber – schnell, mobil, ohne Ballast.</p>
+          <ul class="checks">
+            <li>Leistungen klar gegliedert statt aneinandergereiht</li>
+            <li>Ein Weg zur Anfrage auf jeder Seite</li>
+            <li>Saubere Technik: schnell, mobil, wartbar</li>
+          </ul>
+          <div class="case-tags"><span>Konzept &amp; Struktur</span><span>Design</span><span>Texte</span><span>Anfrageführung</span><span>Technik &amp; SEO-Basis</span></div>
         </div>
-        <div class="luxury-showcase-grid">
-          <article class="luxury-case large reveal">
-            <div class="luxury-case-media media-dark bgx-swl5h3" style="height: 572px !important; min-height: 572px !important;">
-              <div class="case-overlay-copy" style="height: 230px !important; min-height: 230px !important;">
-                
-                <span class="mini-tag" style="translate: 270px 144px !important;">Handwerk Premium</span><h3 style="width: 42% !important; max-width: 42% !important; translate: -21px 65px !important;">Starke Präsenz für Handwerksbetriebe mit Anspruch</h3>
+        <figure class="case__media">
+          <div class="exhibit-stage">
+            <div class="laptop-stage" id="laptop-stage">
+              <div class="open-laptop">
+                <div class="ol-lid">
+                  <div class="ol-screen">
+                    <img src="bilder/referenz-desktop.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Referenzprojekt: Webseite eines B2B-Fertigungsunternehmens aus der Metallbranche">
+                  </div>
+                </div>
+                <div class="ol-base"></div>
+                <div class="ol-shadow"></div>
               </div>
             </div>
-            <div class="luxury-case-body">
-              <p>Ein hochwertiger Handwerksauftritt muss zuverlässig, professionell und modern wirken, ohne künstlich aufgesetzt zu sein. Die Balance aus Seriosität, Performance und Klarheit ist entscheidend.</p>
-              <div class="case-metrics">
-                <span>starker erster Eindruck</span>
-                <span>hohe Klarheit</span>
-                <span>mehr Vertrauen</span>
-              </div>
-            </div>
-          </article>
-          <article class="luxury-case reveal delay-1">
-            <div class="luxury-case-media media-gold bgx-pp57fh" aria-hidden="true"></div>
-            <div class="luxury-case-body">
-              <span class="tag luxury-tag">Studio / Beauty / Praxis</span>
-              <h3>Edle Ruhe, klare Führung, hochwertige Wahrnehmung</h3>
-              <p>Fürs Auge ruhig, für den Nutzer eindeutig und für die Marke deutlich hochwertiger als Standard-Templates.</p>
-            </div>
-          </article>
-          <article class="luxury-case reveal delay-2">
-            <div class="luxury-case-media media-stone bgx-60synb" aria-hidden="true"></div>
-            <div class="luxury-case-body">
-              <span class="tag luxury-tag">Dienstleister / Kleinbanken</span>
-              <h3>Souveräne Sprache und visuelle Autorität</h3>
-              <p>Reduziert, präzise und selbstbewusst. Genau die Art von digitalem Auftritt, die Kompetenz schon optisch unterstreicht.</p>
-            </div>
-          </article>
-        </div>
-      </section>
+          </div>
+          <figcaption class="caption"><span><span class="number">03.1</span>Referenzprojekt · B2B / Metallfertigung</span><span>Webdesign &amp; Entwicklung</span></figcaption>
+        </figure>
+      </div>
+    </div>
 
-      <section class="signature-gallery" aria-labelledby="gallery-heading">
-        <div class="section-head light-head">
-          <div class="eyebrow luxury-eyebrow">Signature Frames</div>
-          <h2 id="gallery-heading">Große Bildflächen, räumliche Ebenen und eine visuelle Sprache, die nach Premium aussieht.</h2>
-          <p>Damit die Seite nicht nur textlich stark ist, sondern auch optisch sofort eine höherwertige Klasse transportiert, setzt diese Richtung auf inszenierte Flächen, Lichtkanten und luxuriöse Materialwirkung.</p>
+    <!-- Block B: Laptop + Phone links, Text rechts -->
+    <div class="wrap wrap-wide">
+      <div class="case case--flip">
+        <div class="case__text rv">
+          <p class="eyebrow case__tag">Auf jedem Gerät</p>
+          <h3 class="h3">Am Handy genauso durchdacht wie am großen Bildschirm.</h3>
+          <p>Die meisten Besucher kommen vom Handy. Deshalb werden Lesbarkeit, Ladezeit und der Weg zur Anfrage zuerst dort geprüft – und dann am Desktop ausgebaut, nicht umgekehrt.</p>
+          <ul class="checks">
+            <li>Texte lesbar, Knöpfe erreichbar, nichts rutscht</li>
+            <li>Bilder in passender Größe, kurze Ladezeiten</li>
+            <li>Formulare, die am Handy funktionieren</li>
+          </ul>
         </div>
-        <div class="signature-gallery-grid">
-          <article class="signature-frame frame-tall reveal bgx-kstadt">
-            <div class="frame-sheen" aria-hidden="true"></div>
-            <div class="frame-copy">
-              <span class="mini-tag">Black / Gold</span>
-              <h3>Starke erste Wahrnehmung statt lebloser Standardfläche.</h3>
-            </div>
-          </article>
-          <article class="signature-frame frame-wide reveal delay-1 bgx-wzdngw">
-            <div class="frame-sheen" aria-hidden="true"></div>
-            <div class="frame-copy">
-              <span class="mini-tag">Luxury Layout</span>
-              <h3>Mehr Tiefe, mehr Bühne, mehr visuelle Autorität.</h3>
-            </div>
-          </article>
-          <article class="signature-frame frame-stone reveal delay-2 bgx-klaser">
-            <div class="frame-sheen" aria-hidden="true"></div>
-            <div class="frame-copy">
-              <span class="mini-tag">Editorial Presence</span>
-              <h3>Ruhig, klar und trotzdem maximal präsent.</h3>
-            </div>
-          </article>
-        </div>
-      </section>
-      <section id="leistungen" class="luxury-service-section" aria-labelledby="leistungen-heading">
-        <div class="luxury-service-grid">
-          <div class="luxury-pricing reveal">
-            <div class="section-head light-head">
-              <div class="eyebrow luxury-eyebrow">Leistungen</div>
-              <h2 id="leistungen-heading">Premium Webseiten, sauber gegliedert und klar kalkulierbar.</h2>
-            </div>
-            <div class="luxury-price-list">
-              <div class="luxury-price-item" data-paket="Luxury Landing Page" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Luxury Landing Page</strong>
-                  <p>Fokussierte Premium-Seite für ein Angebot, eine Positionierung oder einen klaren Conversion-Einstieg.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line">
-                    <span>Einstieg</span>
-                    <b>ab 499 EUR</b>
-                  </div>
-                  <div class="price-line price-line-premium">
-                    <span>Premium</span>
-                    <b>ab 1.490 EUR</b>
+        <figure class="case__media rv rv-d1">
+          <div class="exhibit-stage persp">
+            <div class="case__media--pair">
+              <div class="device laptop tilt" data-dir="1">
+                <div class="laptop__lid">
+                  <span class="cam" aria-hidden="true"></span>
+                  <div class="screen">
+                    <img src="bilder/referenz-desktop.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Referenzprojekt auf dem Laptop">
                   </div>
                 </div>
+                <div class="laptop__base" aria-hidden="true"></div>
               </div>
-              <div class="luxury-price-item featured" data-paket="Business Signature" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Signature Website</strong>
-                  <p>Konzept, Design, Struktur, Textelemente, Anfrageführung und Premium-Look für Unternehmen mit Anspruch.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line">
-                    <span>Einstieg</span>
-                    <b>ab 999 EUR</b>
-                  </div>
-                  <div class="price-line price-line-premium">
-                    <span>Premium</span>
-                    <b>ab 3.490 EUR</b>
-                  </div>
-                </div>
-              </div>
-              <div class="luxury-price-item" data-paket="Premium Relaunch" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Premium Relaunch</strong>
-                  <p>Für Unternehmen, die ihre aktuelle Website in Wirkung, Vertrauen und Abschlussstärke deutlich anheben müssen.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line">
-                    <span>Einstieg</span>
-                    <b>ab 1.799 EUR</b>
-                  </div>
-                  <div class="price-line price-line-premium">
-                    <span>Premium</span>
-                    <b>ab 4.490 EUR</b>
-                  </div>
-                </div>
-              </div>
-              <div class="luxury-price-item" data-paket="Online-Shop Signature" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Online-Shop Signature</strong>
-                  <p>Luxuriöser Shop-Auftritt mit klarer Produktpräsentation, starker visueller Führung und professioneller Wahrnehmung.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line">
-                    <span>Einstieg</span>
-                    <b>ab 2.499 EUR</b>
-                  </div>
-                  <div class="price-line price-line-premium">
-                    <span>Premium</span>
-                    <b>ab 5.900 EUR</b>
-                  </div>
-                </div>
-              </div>
-              <div class="luxury-price-item" data-paket="Wartung und Pflege" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Wartung Standard</strong>
-                  <p>Monatliche Betreuung für Updates, kleine Änderungen und technische Pflege bei klassischen Websites.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line">
-                    <span>Monatlich</span>
-                    <b>ab 49 EUR</b>
-                  </div>
-                </div>
-              </div>
-              <div class="luxury-price-item" data-paket="Wartung und Pflege" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Wartung Premium</strong>
-                  <p>Erweiterte Betreuung für Premium-Websites mit mehr Designpflege, Anpassungen und engerer Begleitung.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line price-line-premium">
-                    <span>Monatlich Premium</span>
-                    <b>ab 149 EUR</b>
-                  </div>
-                </div>
-              </div>
-              <div class="luxury-price-item custom-tier" data-paket="Individuelles Signature Paket" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Individuelles Signature Paket</strong>
-                  <p>Für Unternehmen mit hohem Anspruch, besonderen Inhalten, komplexer Struktur oder sehr spezifischer Design-Richtung.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line price-line-premium">
-                    <span>Preis</span>
-                    <b>individuell</b>
-                  </div>
-                </div>
-              </div>
-              <div class="luxury-price-item" data-paket="Logo Design" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Logo Design</strong>
-                  <p>Professionelles Logo als Vektordatei – klar, unverwechselbar und auf jede Oberfläche skalierbar.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line">
-                    <span>Standard</span>
-                    <b>ab 249 EUR</b>
-                  </div>
-                  <div class="price-line price-line-premium">
-                    <span>Premium</span>
-                    <b>ab 599 EUR</b>
-                  </div>
-                </div>
-              </div>
-              <div class="luxury-price-item" data-paket="Lead-System" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Automatisches Lead-System</strong>
-                  <p>Vollautomatische Neukundengewinnung – das System findet, bewertet und kontaktiert potenzielle Kunden für Sie, während Sie schlafen.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line">
-                    <span>Einstieg — Einrichtung ab</span>
-                    <b>990 EUR</b>
-                  </div>
-                  <div class="price-line">
-                    <span>Einstieg — Monatlich ab</span>
-                    <b>99 EUR</b>
-                  </div>
-                  <div class="price-line price-line-premium">
-                    <span>Premium — Einrichtung ab</span>
-                    <b>1.990 EUR</b>
-                  </div>
-                  <div class="price-line price-line-premium">
-                    <span>Premium — Monatlich ab</span>
-                    <b>199 EUR</b>
-                  </div>
-                </div>
-              </div>
-              <div class="luxury-price-item" data-paket="Brand Identity Paket" role="button" tabindex="0" title="Paket anfragen">
-                <div>
-                  <strong>Brand Identity Paket</strong>
-                  <p>Logo, Farbpalette, Typografie und visuelle Grundregeln – alles, was du für einen kohärenten Markenauftritt brauchst.</p>
-                </div>
-                <div class="price-stack">
-                  <div class="price-line">
-                    <span>Einstieg</span>
-                    <b>ab 899 EUR</b>
-                  </div>
-                  <div class="price-line price-line-premium">
-                    <span>Premium</span>
-                    <b>ab 1.890 EUR</b>
-                  </div>
+              <div class="device phone phone--lg tilt" data-dir="-1">
+                <span class="island" aria-hidden="true"></span>
+                <div class="screen">
+                  <img src="bilder/referenz-handy.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Referenzprojekt auf dem Smartphone" class="phone__img">
                 </div>
               </div>
             </div>
           </div>
+          <figcaption class="caption"><span><span class="number">03.2</span>Dieselbe Referenz · Laptop und Smartphone</span><span>Responsiv</span></figcaption>
+        </figure>
+      </div>
+    </div>
 
-          <aside class="luxury-side-panel reveal delay-1" aria-label="Was du bekommst">
-          <div class="aside-logo-badge" aria-hidden="true">
-            <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <radialGradient id="badge-glow" cx="50%" cy="46%" r="50%">
-                  <stop offset="0%" stop-color="#f1d89c" stop-opacity="0.20"/>
-                  <stop offset="100%" stop-color="#d6b06a" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="badge-gold-h" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#a88445" stop-opacity="0"/>
-                  <stop offset="28%" stop-color="#d6b06a"/>
-                  <stop offset="50%" stop-color="#f1d89c"/>
-                  <stop offset="72%" stop-color="#d6b06a"/>
-                  <stop offset="100%" stop-color="#a88445" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="badge-gold-v" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#a88445" stop-opacity="0"/>
-                  <stop offset="35%" stop-color="#d6b06a"/>
-                  <stop offset="65%" stop-color="#d6b06a"/>
-                  <stop offset="100%" stop-color="#a88445" stop-opacity="0"/>
-                </linearGradient>
-                <filter id="badge-blur">
-                  <feGaussianBlur stdDeviation="12"/>
-                </filter>
-              </defs>
-
-              <!-- Soft gold glow behind P -->
-              <ellipse cx="160" cy="108" rx="80" ry="64" fill="url(#badge-glow)" filter="url(#badge-blur)"/>
-
-              <!-- Outer frame border -->
-              <rect x="24" y="14" width="272" height="202" rx="10"
-                    fill="none" stroke="#d6b06a" stroke-width="0.5" opacity="0.20"/>
-
-              <!-- Corner brackets: top-left -->
-              <path d="M24,52 L24,14 L62,14" fill="none" stroke="#d6b06a" stroke-width="1.4" opacity="0.55" stroke-linecap="square"/>
-              <!-- top-right -->
-              <path d="M296,52 L296,14 L258,14" fill="none" stroke="#d6b06a" stroke-width="1.4" opacity="0.55" stroke-linecap="square"/>
-              <!-- bottom-left -->
-              <path d="M24,164 L24,202 L62,202" fill="none" stroke="#d6b06a" stroke-width="1.4" opacity="0.55" stroke-linecap="square"/>
-              <!-- bottom-right -->
-              <path d="M296,164 L296,202 L258,202" fill="none" stroke="#d6b06a" stroke-width="1.4" opacity="0.55" stroke-linecap="square"/>
-
-              <!-- Top horizontal rule with diamond ornament -->
-              <line x1="44" y1="46" x2="146" y2="46" stroke="url(#badge-gold-h)" stroke-width="0.7"/>
-              <polygon points="160,40 168,46 160,52 152,46" fill="none" stroke="#d6b06a" stroke-width="1" opacity="0.75"/>
-              <circle cx="160" cy="46" r="2.2" fill="#d6b06a" opacity="0.55"/>
-              <line x1="174" y1="46" x2="276" y2="46" stroke="url(#badge-gold-h)" stroke-width="0.7"/>
-
-              <!-- Outer dashed ring -->
-              <circle cx="160" cy="108" r="62"
-                      fill="none" stroke="#d6b06a" stroke-width="0.6" opacity="0.20"
-                      stroke-dasharray="3 6"/>
-              <!-- Inner solid ring -->
-              <circle cx="160" cy="108" r="53"
-                      fill="none" stroke="#d6b06a" stroke-width="0.5" opacity="0.28"/>
-
-              <!-- Four small tick marks on ring -->
-              <line x1="160" y1="54" x2="160" y2="60" stroke="#d6b06a" stroke-width="0.9" opacity="0.45"/>
-              <line x1="160" y1="156" x2="160" y2="162" stroke="#d6b06a" stroke-width="0.9" opacity="0.45"/>
-              <line x1="106" y1="108" x2="112" y2="108" stroke="#d6b06a" stroke-width="0.9" opacity="0.45"/>
-              <line x1="208" y1="108" x2="214" y2="108" stroke="#d6b06a" stroke-width="0.9" opacity="0.45"/>
-
-              <!-- Large P monogram -->
-              <text x="162" y="148"
-                    text-anchor="middle"
-                    font-family="Cormorant Garamond, Georgia, serif"
-                    font-weight="600"
-                    font-size="112"
-                    fill="#f1d89c"
-                    opacity="0.88">P</text>
-
-              <!-- Bottom horizontal rule -->
-              <line x1="44" y1="170" x2="146" y2="170" stroke="url(#badge-gold-h)" stroke-width="0.7"/>
-              <polygon points="160,164 168,170 160,176 152,170" fill="none" stroke="#d6b06a" stroke-width="1" opacity="0.75"/>
-              <circle cx="160" cy="170" r="2.2" fill="#d6b06a" opacity="0.55"/>
-              <line x1="174" y1="170" x2="276" y2="170" stroke="url(#badge-gold-h)" stroke-width="0.7"/>
-
-              <!-- PRIMEWEB wordmark -->
-              <text x="160" y="188"
-                    text-anchor="middle"
-                    font-family="Manrope, sans-serif"
-                    font-weight="800"
-                    font-size="11.5"
-                    fill="#d6b06a"
-                    letter-spacing="7"
-                    opacity="0.88">PRIMEWEB</text>
-
-              <!-- DESIGN tagline -->
-              <text x="160" y="203"
-                    text-anchor="middle"
-                    font-family="Manrope, sans-serif"
-                    font-weight="400"
-                    font-size="8.5"
-                    fill="#d6b06a"
-                    letter-spacing="7"
-                    opacity="0.55">DESIGN</text>
-            </svg>
+    <!-- Stilstudien (07) -->
+    <div class="wrap">
+      <div class="studies-header rv">
+        <h3>Andere Branchen. <em>Eigener Ausdruck.</em></h3>
+        <p>Stilstudien sind Gestaltungsbeispiele mit KI-generierten Motiven, keine Kundenprojekte. Die echte Referenz siehst du oben.</p>
+      </div>
+      <div class="studies-grid">
+        <figure class="study rv">
+          <div class="study-window">
+            <div class="study-toolbar"><span>Stilstudie / Handwerk</span><span>01 — 03</span></div>
+            <div class="study-image parallax" data-parallax>
+              <img src="bilder/studie-fassade-nacht.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Architektonische Bildstudie: dunkler Beton und warm beleuchtete Glasfassaden bei Nacht">
+            </div>
+            <div class="study-copy"><p>Präzision.<br>Bis ins Detail.</p></div>
           </div>
+          <figcaption>
+            <h4>Stilrichtung 01 — Handwerk</h4>
+            <p>Markante Typografie, echte Materialien, Leistungen auf einen Blick, Anfrage in zwei Klicks.</p>
+          </figcaption>
+        </figure>
+        <figure class="study rv rv-d1">
+          <div class="study-window">
+            <div class="study-toolbar"><span>Stilstudie / Praxis &amp; Studio</span><span>02 — 03</span></div>
+            <div class="study-image parallax" data-parallax>
+              <img src="bilder/studie-glas-messing.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Materialstudie mit feiner goldfarbener Glaskante und weichem Licht">
+            </div>
+            <div class="study-copy"><p>Aufmerksamkeit<br>für das Wesentliche.</p></div>
+          </div>
+          <figcaption>
+            <h4>Stilrichtung 02 — Praxis &amp; Studio</h4>
+            <p>Ruhige Flächen, sensible Details, ein verständlicher Weg zum Termin.</p>
+          </figcaption>
+        </figure>
+        <figure class="study study-wide rv">
+          <div class="study-window">
+            <div class="study-image parallax" data-parallax>
+              <img src="bilder/studie-schreibtisch.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Bildstudie eines Schreibtischs mit beleuchtetem Monitor, Notizbuch und dunklen Materialien">
+            </div>
+            <div class="study-copy">
+              <span class="eyebrow muted">Stilstudie / Dienstleister · 03 — 03</span>
+              <p>Kompetenz,<br>die sich<br><em>klar ausdrückt.</em></p>
+            </div>
+          </div>
+          <figcaption>
+            <h4>Stilrichtung 03 — Dienstleister</h4>
+            <p>Reduzierte Gestaltung, verständliche Angebote, direkter Kontakt – von Wiesbaden bis Mainz.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-            <div class="eyebrow luxury-eyebrow dark">Signature Website</div>
-            <h3>Was du konkret bekommst.</h3>
-            <ul class="dark-list">
-              <li>hochwertiger Hero mit starker Markenwirkung</li>
-              <li>verkaufsstarke Leistungsseiten</li>
-              <li>mobile Optimierung und saubere Kontaktlogik</li>
-              <li>CRM-ready Lead-Erfassung</li>
-              <li>ruhiges, professionelles Layout statt Reizüberflutung</li>
-              <li>hochwertiger Eindruck in wenigen Sekunden</li>
-              <li>klare Preis- und Angebotswahrnehmung</li>
+  <!-- ===== EXPONAT 04: LEISTUNGEN & PREISE ===== -->
+  <section class="section pricing" id="leistungen" aria-labelledby="pricing-heading">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="number" aria-hidden="true">04</span>
+        <p class="eyebrow">Leistungen &amp; Preise</p>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="section-head split">
+        <div>
+          <h2 id="pricing-heading" class="rv">Drei Pakete. <em>Ein Festpreis.</em></h2>
+        </div>
+        <p class="lede rv rv-d1">Alle Preise „ab“ – den verbindlichen Festpreis bekommst du nach dem kostenlosen Erstgespräch. Keine Überraschungen, keine Stundenzettel.</p>
+      </div>
+
+      <div class="packages">
+        <article class="package rv" data-glow aria-labelledby="landing-title">
+          <div class="package-heading">
+            <span class="number" aria-hidden="true">01</span>
+            <div>
+              <h3 id="landing-title">Landing Page</h3>
+              <p class="package-audience">Ein Angebot. Eine Zielgruppe. Eine Seite, die auf den Punkt kommt.</p>
+            </div>
+          </div>
+          <div class="package-cost">
+            <p class="price"><small>ab</small>990 €</p>
+            <p class="price-note">Livegang in ca. 10 Werktagen</p>
+          </div>
+          <div class="package-features">
+            <ul>
+              <li>1 Seite</li>
+              <li>Konzept &amp; Text-Feinschliff</li>
+              <li>Mobil-Optimierung</li>
+              <li>Kontaktformular</li>
+              <li>Domain/Hosting-Einrichtung</li>
+              <li>Livegang in ca. 10 Werktagen</li>
             </ul>
-            <div class="market-compare">
-              <span class="mini-tag">Marktvergleich</span>
-              <div class="market-compare-list">
-                <div class="market-compare-row">
-                  <strong>Klassische Agentur</strong>
-                  <span>ca. 5.000 – 15.000 EUR</span>
-                </div>
-                <div class="market-compare-row">
-                  <strong>Premium Freelancer</strong>
-                  <span>ca. 2.500 – 6.000 EUR</span>
-                </div>
-                <div class="market-compare-row market-compare-row-prime">
-                  <strong>PrimeWeb Signature</strong>
-                  <span>ab 999 EUR / Premium ab 3.490 EUR</span>
-                </div>
-              </div>
-              <p>Deutlich mehr Wirkung als klassische Baukasten-Angebote – ohne das volle Agentur-Budget.</p>
-            </div>
-            <div class="side-signature-stack">
-              <div class="signature-chip">
-                <strong>Conversion mit Niveau</strong>
-                <span>CTA-Platzierung, Angebotsstruktur und Kontaktpunkte arbeiten klar auf die Anfrage hin</span>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="luxury-process" aria-labelledby="prozess-heading">
-        <div class="section-head light-head">
-          <div class="eyebrow luxury-eyebrow">Prozess</div>
-          <h2 id="prozess-heading">Von der ersten Anfrage bis zur finalen Premium-Seite.</h2>
-        </div>
-        <div class="luxury-timeline">
-          <article class="timeline-lux reveal">
-            <span aria-hidden="true">01</span>
-            <div>
-              <h3>Analyse</h3>
-              <p>Ich schaue auf dein Angebot, deinen Markt, deine aktuelle Außendarstellung und darauf, wo digital Potenzial verschenkt wird.</p>
-            </div>
-          </article>
-          <article class="timeline-lux reveal delay-1">
-            <span aria-hidden="true">02</span>
-            <div>
-              <h3>Richtung</h3>
-              <p>Es wird festgelegt, welche visuelle Sprache, welche Struktur und welches Niveau für dein Unternehmen wirklich passend ist.</p>
-            </div>
-          </article>
-          <article class="timeline-lux reveal delay-2">
-            <span aria-hidden="true">03</span>
-            <div>
-              <h3>Design &amp; Build</h3>
-              <p>Die Website wird so aufgebaut, dass sie nicht nur luxuriös aussieht, sondern sich auch hochwertig und klar geführt anfühlt.</p>
-            </div>
-          </article>
-          <article class="timeline-lux reveal delay-3">
-            <span aria-hidden="true">04</span>
-            <div>
-              <h3>Live &amp; Lead-Flow</h3>
-              <p>Nach dem Launch landen neue Anfragen direkt in deinem internen Workflow und können sauber weiterbearbeitet werden.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-      <section id="anfrage" class="luxury-contact" aria-labelledby="anfrage-heading">
-        <div class="luxury-contact-grid">
-          <aside class="luxury-contact-copy reveal">
-            <div class="eyebrow luxury-eyebrow dark">Kostenlose Ersteinschätzung</div>
-            <h2 id="anfrage-heading">Wenn du einen Auftritt willst, der deutlich hochwertiger wirkt als Standard-Webdesign.</h2>
-            <p>Schicke deine aktuelle Website oder beschreibe kurz dein Projekt. Die Anfrage wird direkt in deinem internen Lead-System gespeichert und kann später sauber weiterbearbeitet werden.</p>
-            <div class="contact-luxury-cards">
-              <div>
-                <strong>Premium Look</strong>
-                <span>schwarz, gold, ruhevoll und souverän</span>
-              </div>
-              <div>
-                <strong>Direkter Workflow</strong>
-                <span>Anfragen bleiben nicht lose, sondern werden erfasst</span>
-              </div>
-              <div>
-                <strong>Mehr Wirkung pro Sekunde</strong>
-                <span>dein Niveau wird schneller verstanden und deutlich stärker wahrgenommen</span>
-              </div>
-            </div>
-          </aside>
-
-          <div class="luxury-form-wrap reveal delay-1">
-            <form id="contactForm" class="luxury-form" novalidate>
-              <div class="form-grid">
-                <div class="field">
-                  <label for="name">Name <span aria-hidden="true">*</span></label>
-                  <input id="name" name="name" type="text" placeholder="Max Mustermann"
-                    autocomplete="name" required aria-required="true">
-                </div>
-                <div class="field">
-                  <label for="company">Unternehmen</label>
-                  <input id="company" name="company" type="text" placeholder="Musterbetrieb GmbH"
-                    autocomplete="organization">
-                </div>
-                <div class="field">
-                  <label for="email">E-Mail <span aria-hidden="true">*</span></label>
-                  <input id="email" name="email" type="email" placeholder="name@firma.de"
-                    autocomplete="email" inputmode="email" required aria-required="true">
-                </div>
-                <div class="field">
-                  <label for="phone">Telefon / WhatsApp</label>
-                  <input id="phone" name="phone" type="tel" placeholder="+49 ..."
-                    autocomplete="tel" inputmode="tel">
-                </div>
-                <div class="field">
-                  <label for="projectType">Projektart <span aria-hidden="true">*</span></label>
-                  <select id="projectType" name="projectType" required aria-required="true">
-                    <option value="">Bitte auswählen</option>
-                    <option>Neue Website</option>
-                    <option>Relaunch einer bestehenden Website</option>
-                    <option>Luxury Landing Page</option>
-                    <option>Business Signature</option>
-                    <option>Premium Relaunch</option>
-                    <option>Online-Shop Signature</option>
-                    <option>Wartung und Pflege</option>
-                    <option>Individuelles Signature Paket</option>
-                    <option>Automatisches Lead-System</option>
-                    <option>Logo Design</option>
-                    <option>Brand Identity Paket</option>
-                    <option>Kostenlose Ersteinschätzung</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="website">Bestehende Website</label>
-                  <input id="website" name="website" type="url" placeholder="https://..."
-                    autocomplete="url" spellcheck="false">
-                </div>
-                <div class="field full">
-                  <label for="message">Nachricht <span aria-hidden="true">*</span></label>
-                  <textarea id="message" name="message"
-                    placeholder="Beschreibe kurz, was dir an deiner aktuellen Website nicht gefällt oder was deine neue Seite ausstrahlen soll."
-                    required aria-required="true"></textarea>
-                </div>
-              </div>
-              <label class="consent" for="consent">
-                <input id="consent" type="checkbox" required aria-required="true">
-                <span>Ich bin mit der Speicherung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden.</span>
-              </label>
-              <div class="success-box" id="formSuccess"
-                role="status" aria-live="polite" aria-atomic="true">
-                ✓ Vielen Dank! Marc meldet sich persönlich bei Ihnen – meist innerhalb von 24 Stunden.
-              </div>
-              <div class="error-box" id="formError"
-                role="alert" aria-live="assertive" aria-atomic="true">
-                Die Anfrage konnte gerade nicht gespeichert werden.
-              </div>
-              <button class="btn btn-primary gold-btn wide-btn" type="submit">Premium Projekt anfragen</button>
-              <p class="inline-note">Wenn dein Auftritt teurer, ruhiger und professioneller wirken soll als Standard-Webdesign, ist das der richtige nächste Schritt.</p>
-            </form>
+            <a class="text-link" href="#kontakt" data-package="Landing Page">Landing Page anfragen <span aria-hidden="true">↗</span></a>
           </div>
-        </div>
-      </section>
+        </article>
 
-      <section id="rechtliches" class="luxury-legal" aria-labelledby="legal-heading">
-        <h2 id="legal-heading" class="sr-only">Rechtliches</h2>
-        <div class="legal-grid">
+        <article class="package featured rv" data-glow aria-labelledby="signature-title">
+          <span class="badge">Meistgewählt</span>
+          <div class="package-heading">
+            <span class="number" aria-hidden="true">02</span>
+            <div>
+              <h3 id="signature-title">Signature Website</h3>
+              <p class="package-audience">Für Unternehmen, die hochwertig wirken und Anfragen bekommen wollen.</p>
+            </div>
+          </div>
+          <div class="package-cost">
+            <p class="price"><small>ab</small>2.990 €</p>
+            <p class="price-note">Umsetzung in ca. 4 Wochen</p>
+          </div>
+          <div class="package-features">
+            <ul>
+              <li>Bis 7 Seiten/Abschnitte</li>
+              <li>Konzept &amp; Struktur</li>
+              <li>Texte</li>
+              <li>Bildkonzept</li>
+              <li>Anfrageführung</li>
+              <li>SEO-Grundlagen</li>
+              <li>DSGVO-saubere Formulare</li>
+              <li>2 Korrekturrunden</li>
+            </ul>
+            <a class="text-link" href="#kontakt" data-package="Signature Website">Signature Website anfragen <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="package rv" data-glow aria-labelledby="premium-title">
+          <div class="package-heading">
+            <span class="number" aria-hidden="true">03</span>
+            <div>
+              <h3 id="premium-title">Premium Relaunch / Online-Shop</h3>
+              <p class="package-audience">Für bestehende Seiten mit Schwächen oder deinen Online-Shop.</p>
+            </div>
+          </div>
+          <div class="package-cost">
+            <p class="price"><small>ab</small>4.900 €</p>
+            <p class="price-note">Umsetzung in ca. 6–8 Wochen</p>
+          </div>
+          <div class="package-features">
+            <ul>
+              <li>Alles aus Signature</li>
+              <li>Migration &amp; Weiterleitungen</li>
+              <li>Produkt- oder Leistungsinszenierung</li>
+              <li>Animationen / 3D-Elemente</li>
+              <li>Shop-Anbindung</li>
+              <li>Schulung</li>
+            </ul>
+            <a class="text-link" href="#kontakt" data-package="Premium Relaunch / Online-Shop">Relaunch oder Shop anfragen <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+      <p class="pricing-footnote rv">Alle Paketpreise sind Ab-Preise. Den verbindlichen Umfang und Festpreis legen wir im Angebot fest.</p>
+
+      <div class="extras">
+        <div class="rv">
+          <h3>Was deinen <em>Auftritt</em> ergänzt.</h3>
+          <p class="extras-intro">Passend zu deinem Vorhaben – einzeln oder zusammen mit deiner Webseite.</p>
+        </div>
+        <div class="extras-list">
+          <article class="extra rv">
+            <h4>Wartung &amp; Pflege</h4>
+            <p><strong>ab 49 €/Monat</strong><br>Updates, Sicherheit und kleine Änderungen.</p>
+            <p><strong>Premium ab 149 €/Monat</strong><br>Designpflege, monatliche Anpassungen und Priorität.</p>
+            <a class="text-link" href="#kontakt" data-package="Wartung &amp; Pflege">Wartung anfragen <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="extra rv rv-d1">
+            <h4>Logo &amp; Brand Identity</h4>
+            <p><strong>Logo ab 599 €</strong></p>
+            <p><strong>Brand Identity ab 1.890 €</strong><br>Logo, Farben, Schrift und Regeln für deinen Auftritt.</p>
+            <a class="text-link" href="#kontakt" data-package="Logo / Brand Identity">Logo oder Brand Identity anfragen <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="extra rv rv-d2">
+            <h4>Neukunden-Service</h4>
+            <p><strong>Einrichtung ab 990 € + ab 199 €/Monat</strong></p>
+            <p>Ich recherchiere passende Wunschkunden in deiner Region und bereite die Ansprache vor – du entscheidest, wen du kontaktierst.</p>
+            <a class="text-link" href="#kontakt" data-package="Neukunden-Service">Neukunden-Service anfragen <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="extra rv rv-d3">
+            <h4>Individuell</h4>
+            <p><strong>Preis nach Aufwand</strong></p>
+            <p>Für Sonderstrukturen, Mehrsprachigkeit und Portale. Wir sprechen über das Ziel, dann über den Weg.</p>
+            <a class="text-link" href="#kontakt" data-package="Noch unklar">Vorhaben besprechen <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </div>
+
+      <p class="pricing-note rv">Agenturen rechnen für vergleichbare Projekte meist 5.000–15.000 €. <strong>Du bekommst Agentur-Niveau mit einem direkten Ansprechpartner.</strong></p>
+    </div>
+  </section>
+
+  <!-- ===== EXPONAT 05: ABLAUF ===== -->
+  <section class="section process" id="ablauf" aria-labelledby="process-heading">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="number" aria-hidden="true">05</span>
+        <p class="eyebrow">Ablauf</p>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="process-layout">
+        <div class="process-intro">
+          <h2 id="process-heading" class="rv">Vier Schritte bis <em>zum Livegang.</em></h2>
+          <p class="lede rv rv-d1">Du weißt zu jedem Zeitpunkt, wo wir stehen – und was es kostet.</p>
+          <figure class="process-image rv rv-d2">
+            <div class="parallax" data-parallax>
+              <img src="bilder/studie-schreibtisch.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Bildstudie eines Arbeitsplatzes im warmen Licht eines Bildschirms">
+            </div>
+            <figcaption class="caption"><span><span class="number">05</span>Arbeitsatmosphäre — eine Bildstudie</span><span>KI-generiert</span></figcaption>
+          </figure>
+        </div>
+        <div class="steps-wrap">
+          <span class="process-line" aria-hidden="true"></span>
+          <ol class="steps">
+          <li class="step" data-step>
+            <div class="step-num" aria-hidden="true">01</div>
+            <div>
+              <h3><small>Schritt 01</small>Erstgespräch</h3>
+              <p>Kostenlos, 20 Minuten. Du erzählst, ich höre zu – über dein Unternehmen, deine Zielgruppe und das, was die neue Seite erreichen soll.</p>
+            </div>
+          </li>
+          <li class="step" data-step>
+            <div class="step-num" aria-hidden="true">02</div>
+            <div>
+              <h3><small>Schritt 02</small>Konzept &amp; Festpreis</h3>
+              <p>Struktur, Stil, Text-Plan – und ein verbindliches Angebot, mit dem du entscheiden kannst.</p>
+            </div>
+          </li>
+          <li class="step" data-step>
+            <div class="step-num" aria-hidden="true">03</div>
+            <div>
+              <h3><small>Schritt 03</small>Design &amp; Umsetzung</h3>
+              <p>Du siehst Zwischenstände und gibst Feedback. Änderungen sind inklusive.</p>
+            </div>
+          </li>
+          <li class="step" data-step>
+            <div class="step-num" aria-hidden="true">04</div>
+            <div>
+              <h3><small>Schritt 04</small>Livegang &amp; Betreuung</h3>
+              <p>Technik, Domain, Formulare – ich kümmere mich darum, dass alles zusammenpasst. Danach auf Wunsch Wartung.</p>
+            </div>
+          </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPONAT 06: ÜBER MARC ===== -->
+  <section class="section about" id="ueber" aria-labelledby="about-heading">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="number" aria-hidden="true">06</span>
+        <p class="eyebrow">Über Marc</p>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="about-heading">
+        <h2 id="about-heading" class="rv">Aus dem Rheingau. <em>Ein Mensch, kein Apparat.</em></h2>
+      </div>
+      <figure class="rv">
+        <div class="rhine-photo parallax" data-parallax>
+          <img src="bilder/rheingau-weinberge.webp" width="1900" height="1266" loading="lazy" decoding="async" alt="Weinberge im Rheingau mit Blick auf den Rhein">
+        </div>
+        <figcaption class="caption"><span><span class="number">06</span>Rheingau — Weinberge bei Rüdesheim</span><span>Foto</span></figcaption>
+      </figure>
+      <div class="about-bottom">
+        <div class="rv">
+          <h3 class="about-name">Marc Daub</h3>
+          <p class="about-location">Inhaber · Webdesign &amp; Entwicklung · Rüdesheim am Rhein</p>
+          <figure class="portrait" id="portrait">
+            <img src="bilder/marc.jpg" alt="Marc Daub, PrimeWeb Design" width="800" height="1000" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
+            <div class="placeholder" aria-hidden="true"><div><b>M.</b><span>Foto folgt</span></div></div>
+          </figure>
+          <p class="portrait-caption">Marc Daub · PrimeWeb Design</p>
+        </div>
+        <div class="about-copy rv rv-d1">
+          <p class="quote">„Ich bin Marc, Webdesigner aus Rüdesheim am Rhein. Ich baue Webseiten für Unternehmen, die mehr können, als ihre Webseite zeigt. Du bekommst keinen Projektmanager, sondern mich – vom ersten Gespräch bis zum Livegang.“</p>
+          <p>Ich arbeite für kleine und mittlere Unternehmen: Handwerk, Praxen, Studios, Dienstleister und B2B-Mittelstand. Im Rheingau, in Wiesbaden und Mainz, in Hessen und deutschlandweit.</p>
+          <div class="about-facts">
+            <div><b>24 h</b><span>Antwort auf Anfragen</span></div>
+            <div><b>Festpreis</b><span>nach Erstgespräch</span></div>
+            <div><b>Rheingau</b><span>und deutschlandweit</span></div>
+          </div>
+          <a class="text-link" href="#kontakt">Lernen wir uns kennen <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPONAT 07: KONTAKT ===== -->
+  <section class="section contact" id="kontakt" aria-labelledby="contact-heading">
+    <div class="wrap">
+      <div class="section-label">
+        <span class="number" aria-hidden="true">07</span>
+        <p class="eyebrow">Kontakt</p>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="contact-head">
+        <h2 id="contact-heading" class="rv">Erzähl mir von <em>deinem Unternehmen.</em></h2>
+        <span class="number rv rv-d1" aria-hidden="true">07</span>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-intro">
+          <p class="lede rv">Kostenloses Erstgespräch, 20 Minuten, ohne Verpflichtung. Danach bekommst du ein Festpreis-Angebot. Ich melde mich innerhalb von 24 Stunden.</p>
+          <div class="contact-direct rv rv-d1">
+            <a class="text-link" href="https://wa.me/4915781774883" target="_blank" rel="noopener"><span><small>WhatsApp</small>+49 157 81774883</span><span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="mailto:marc@primeweb-design.de"><span><small>E-Mail</small>marc@primeweb-design.de</span><span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="tel:+4915781774883"><span><small>Telefon</small>+49 157 81774883</span><span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="contact-note rv rv-d2">Deine Anfrage beantworte ich persönlich – meist innerhalb von 24 Stunden.</p>
+          <address class="rv rv-d2">
+            <strong>PrimeWeb Design · Marc Daub</strong><br>
+            Rheinstraße 29<br>
+            65385 Rüdesheim am Rhein<br>
+            Rheingau, Hessen
+          </address>
+        </div>
+
+        <form class="form rv" id="lead-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name">Name <i>*</i></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Dein Name">
+            </div>
+            <div class="field">
+              <label for="f-company">Unternehmen</label>
+              <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Firma / Praxis / Betrieb">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-email">E-Mail <i>*</i></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="name@firma.de">
+            </div>
+            <div class="field">
+              <label for="f-phone">Telefon</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+49 …">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-type">Projektart <i>*</i></label>
+              <select id="f-type" name="projectType" required>
+                <option value="" selected disabled>Bitte wählen</option>
+                <option value="Landing Page">Landing Page – ab 990 €</option>
+                <option value="Signature Website">Signature Website – ab 2.990 €</option>
+                <option value="Premium Relaunch / Online-Shop">Premium Relaunch / Online-Shop – ab 4.900 €</option>
+                <option value="Wartung &amp; Pflege">Wartung &amp; Pflege</option>
+                <option value="Logo / Brand Identity">Logo / Brand Identity</option>
+                <option value="Neukunden-Service">Neukunden-Service</option>
+                <option value="Noch unklar">Noch unklar</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-website">Aktuelle Webseite</label>
+              <input id="f-website" name="website" type="url" autocomplete="url" placeholder="https://">
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-message">Nachricht <i>*</i></label>
+            <textarea id="f-message" name="message" required placeholder="Was machst du, und was soll die neue Seite leisten?"></textarea>
+          </div>
+          <label class="consent" for="f-consent">
+            <input id="f-consent" type="checkbox" name="consent" required>
+            <span>Ich bin mit der Speicherung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden. <i>*</i></span>
+          </label>
+          <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          <div class="form-foot">
+            <button class="btn btn-gold" type="submit" id="form-submit">Anfrage senden <span class="btn__arrow" aria-hidden="true">→</span></button>
+            <small>* Pflichtfeld · Antwort meist innerhalb von 24 Stunden</small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="rechtliches" aria-labelledby="legal-heading">
+  <div class="wrap">
+    <div class="footer-top">
+      <a class="brand" href="#start" aria-label="PrimeWeb Design – zum Seitenanfang"><span class="brand-mark" aria-hidden="true"></span>PrimeWeb Design</a>
+      <p>Webdesign aus Rüdesheim am Rhein. Persönlich von Marc Daub – hochwertig, zum Festpreis.</p>
+    </div>
+    <h2 id="legal-heading" class="sr-only">Rechtliches</h2>
+    <div class="legal-grid">
           <details class="legal-card reveal" data-rotate-icon>
             <summary>
               <span>Impressum</span>
@@ -1156,418 +703,24 @@
               <p><strong>2) Datenerfassung beim Besuch der Website</strong><br>Bei der bloß informatorischen Nutzung werden nur die Daten verarbeitet, die Ihr Browser an den Server übermittelt („Server-Logfiles“): aufgerufene Seite, Datum und Uhrzeit, übertragene Datenmenge, Referrer-URL, Browser, Betriebssystem und IP-Adresse. Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO auf Basis unseres berechtigten Interesses an einem sicheren und stabilen Betrieb der Website. Die Website nutzt eine SSL/TLS-Verschlüsselung („https://“).</p>
               <p><strong>3) Hosting</strong><br>Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet GitHub die unter Ziffer 2 genannten Server-Logfiles, auch über das Auslieferungsnetz (Content Delivery Network) des Dienstleisters Fastly, Inc., 475 Brannan St. #300, San Francisco, CA 94107, USA. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer schnellen und zuverlässigen Bereitstellung der Website). Für Datenübermittlungen in die USA haben sich die Anbieter dem EU-US Data Privacy Framework angeschlossen, das auf Basis eines Angemessenheitsbeschlusses der Europäischen Kommission ein angemessenes Datenschutzniveau sicherstellt. Weitere Informationen: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
               <p><strong>4) Anfrageformular und E-Mail</strong><br>Wenn Sie uns über das Anfrageformular oder per E-Mail kontaktieren, verarbeiten wir die von Ihnen angegebenen Daten (z. B. Name, Unternehmen, E-Mail-Adresse, Telefonnummer, Website, Paketwunsch und Nachricht) ausschließlich zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Anfrage auf den Abschluss eines Vertrages abzielt, im Übrigen Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung Ihres Anliegens). Die Formulardaten werden über eine Serverfunktion bei der Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA, entgegengenommen und per E-Mail an unser Postfach weitergeleitet. Unser E-Mail-Postfach wird von der IONOS SE, Elgendorfer Str. 57, 56410 Montabaur, Deutschland, bereitgestellt, mit der ein Vertrag zur Auftragsverarbeitung besteht. Vercel hat sich dem EU-US Data Privacy Framework angeschlossen. Ihre Daten werden gelöscht, sobald Ihre Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
-              <p><strong>5) Chat-Assistent</strong><br>Auf der Website steht ein Chat-Assistent zur Verfügung, der Fragen zu unseren Leistungen automatisch beantwortet. Wenn Sie den Chat nutzen, werden Ihre eingegebenen Nachrichten über eine Serverfunktion bei Vercel (siehe Ziffer 4) an den KI-Dienst der Groq, Inc., 400 Castro St., Suite 600, Mountain View, CA 94041, USA, übermittelt, um eine Antwort zu erzeugen. Geben Sie im Chat Name und E-Mail-Adresse an, leiten wir diese zusammen mit Ihrer Nachricht wie unter Ziffer 4 beschrieben per E-Mail an uns weiter. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO (berechtigtes Interesse an einer schnellen Beantwortung von Anfragen). Bei der Übermittlung in die USA kann nicht ausgeschlossen werden, dass US-Behörden Zugriff erhalten; bitte geben Sie im Chat keine sensiblen Daten ein. Die Nutzung des Chats ist freiwillig.</p>
-              <p><strong>6) WhatsApp</strong><br>Sie können uns über einen Link auch per WhatsApp kontaktieren (Anbieter: WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland). Erst wenn Sie den Link anklicken, wird WhatsApp geöffnet. Nutzen Sie diesen Weg, verarbeiten wir Ihre Mobilfunknummer, Ihren Namen (falls angegeben) und Ihre Nachricht zur Beantwortung Ihres Anliegens gemäß Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO. Dabei kann es zu Datenübertragungen an Server der Meta Platforms Inc. in den USA kommen; Meta hat sich dem EU-US Data Privacy Framework angeschlossen. Einzelheiten: <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener">Datenschutzhinweise von WhatsApp</a>.</p>
-              <p><strong>7) Google Tag Manager (nur mit Einwilligung)</strong><br>Diese Website nutzt den Google Tag Manager der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Der Tag Manager dient der Verwaltung von Website-Tags; dabei wird Ihre IP-Adresse an Google übertragen, auch eine Übermittlung an Google LLC in den USA ist möglich (Google hat sich dem EU-US Data Privacy Framework angeschlossen). Der Tag Manager wird ausschließlich geladen, wenn Sie im Cookie-Hinweis auf „Akzeptieren“ klicken (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über den Link „Cookie-Einstellungen“ am Seitenende widerrufen. Weitere Informationen: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.</p>
-              <p><strong>8) Cookie-Hinweis und lokale Speicherung</strong><br>Ihre Entscheidung im Cookie-Hinweis sowie das Schließen einzelner Hinweise werden im lokalen Speicher Ihres Browsers abgelegt, damit der Hinweis nicht bei jedem Besuch erneut erscheint. Diese Angaben verbleiben auf Ihrem Gerät und werden nicht an uns übermittelt. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG sowie Art. 6 Abs. 1 lit. c und f DSGVO. Die Schriftarten dieser Website werden lokal von unserem Server geladen; eine Verbindung zu Google Fonts findet nicht statt.</p>
-              <p><strong>9) Ihre Rechte</strong><br>Sie haben gegenüber dem Verantwortlichen folgende Rechte: Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Unterrichtung (Art. 19 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO), Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO) sowie Beschwerde bei einer Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO), etwa beim Hessischen Beauftragten für Datenschutz und Informationsfreiheit.</p>
+              <p><strong>5) WhatsApp</strong><br>Sie können uns über einen Link auch per WhatsApp kontaktieren (Anbieter: WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland). Erst wenn Sie den Link anklicken, wird WhatsApp geöffnet. Nutzen Sie diesen Weg, verarbeiten wir Ihre Mobilfunknummer, Ihren Namen (falls angegeben) und Ihre Nachricht zur Beantwortung Ihres Anliegens gemäß Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO. Dabei kann es zu Datenübertragungen an Server der Meta Platforms Inc. in den USA kommen; Meta hat sich dem EU-US Data Privacy Framework angeschlossen. Einzelheiten: <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener">Datenschutzhinweise von WhatsApp</a>.</p>
+              <p><strong>6) Keine Cookies, keine Fremdeinbindungen</strong><br>Diese Website setzt keine Cookies und verwendet keine Analyse- oder Werbedienste. Schriftarten, Skripte und Bilder werden ausschließlich von unserem eigenen Webspace geladen; eine Verbindung zu Google Fonts oder zu Content-Delivery-Netzwerken Dritter findet nicht statt. Lediglich beim Absenden des Anfrageformulars werden Daten wie unter Ziffer 4 beschrieben übermittelt.</p>
+              <p><strong>7) Ihre Rechte</strong><br>Sie haben gegenüber dem Verantwortlichen folgende Rechte: Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Unterrichtung (Art. 19 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO), Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO) sowie Beschwerde bei einer Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO), etwa beim Hessischen Beauftragten für Datenschutz und Informationsfreiheit.</p>
               <p><strong>WIDERSPRUCHSRECHT (Art. 21 DSGVO)</strong><br>WENN WIR IHRE PERSONENBEZOGENEN DATEN AUF GRUNDLAGE UNSERES BERECHTIGTEN INTERESSES VERARBEITEN, HABEN SIE DAS RECHT, AUS GRÜNDEN, DIE SICH AUS IHRER BESONDEREN SITUATION ERGEBEN, JEDERZEIT WIDERSPRUCH GEGEN DIESE VERARBEITUNG MIT WIRKUNG FÜR DIE ZUKUNFT EINZULEGEN. WIR BEENDEN DANN DIE VERARBEITUNG, ES SEI DENN, WIR KÖNNEN ZWINGENDE SCHUTZWÜRDIGE GRÜNDE NACHWEISEN, DIE IHRE INTERESSEN, RECHTE UND FREIHEITEN ÜBERWIEGEN, ODER DIE VERARBEITUNG DIENT DER GELTENDMACHUNG, AUSÜBUNG ODER VERTEIDIGUNG VON RECHTSANSPRÜCHEN. WERDEN IHRE DATEN ZUR DIREKTWERBUNG VERARBEITET, KÖNNEN SIE DIESER VERARBEITUNG JEDERZEIT WIDERSPRECHEN; WIR VERARBEITEN IHRE DATEN DANN NICHT MEHR FÜR DIESE ZWECKE.</p>
-              <p><strong>10) Speicherdauer</strong><br>Die Dauer der Speicherung richtet sich nach dem jeweiligen Zweck und den gesetzlichen Aufbewahrungsfristen (z. B. handels- und steuerrechtliche Fristen). Auf Grundlage einer Einwilligung verarbeitete Daten speichern wir, bis Sie die Einwilligung widerrufen. Auf Grundlage berechtigter Interessen verarbeitete Daten speichern wir, bis Sie widersprechen, sofern keine zwingenden Gründe entgegenstehen.</p>
+              <p><strong>8) Speicherdauer</strong><br>Die Dauer der Speicherung richtet sich nach dem jeweiligen Zweck und den gesetzlichen Aufbewahrungsfristen (z. B. handels- und steuerrechtliche Fristen). Auf Grundlage einer Einwilligung verarbeitete Daten speichern wir, bis Sie die Einwilligung widerrufen. Auf Grundlage berechtigter Interessen verarbeitete Daten speichern wir, bis Sie widersprechen, sofern keine zwingenden Gründe entgegenstehen.</p>
               <p><em>Stand: November 2026</em></p>
             </div>
           </details>
-
-          <details class="legal-card reveal delay-2" data-rotate-icon>
-            <summary>
-              <span>AGB</span>
-              <span class="legal-icon" data-faq-icon aria-hidden="true">+</span>
-            </summary>
-            <div class="legal-copy">
-              <p><strong>1. Geltungsbereich</strong><br>Diese AGB gelten für Angebote, Konzeption, Gestaltung, Entwicklung, Pflege und Optimierung von Websites durch PrimeWeb Design.</p>
-              <p><strong>2. Leistungen</strong><br>Der genaue Leistungsumfang ergibt sich aus dem individuell vereinbarten Angebot. Zusätzliche Leistungen, nachträgliche Änderungen und Sonderwünsche können gesondert berechnet werden.</p>
-              <p><strong>3. Mitwirkung</strong><br>Der Auftraggeber stellt Inhalte, Freigaben und notwendige Informationen rechtzeitig bereit. Verzögerungen durch fehlende Mitwirkung können den Projektzeitplan beeinflussen.</p>
-              <p><strong>4. Vergütung</strong><br>Es gelten die im Angebot vereinbarten Preise. Sofern nicht anders vereinbart, sind Rechnungen ohne Abzug innerhalb von 7 Tagen zahlbar.</p>
-              <p><strong>5. Nutzungsrechte</strong><br>Nach vollständiger Zahlung erhält der Auftraggeber die vereinbarten Nutzungsrechte an den erstellten Ergebnissen, soweit keine Rechte Dritter entgegenstehen.</p>
-              <p><strong>6. Haftung</strong><br>PrimeWeb Design haftet nur für Vorsatz und grobe Fahrlässigkeit, soweit gesetzlich zulässig. Für Inhalte, die vom Auftraggeber bereitgestellt werden, bleibt der Auftraggeber verantwortlich.</p>
-              <p><strong>7. Schlussbestimmungen</strong><br>Es gilt deutsches Recht. Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
-            </div>
-          </details>
-        </div>
-        <p class="legal-note">Rechtliche Hinweise kompakt eingebunden. Für den finalen Live-Betrieb empfiehlt sich eine juristische Prüfung der Texte.</p>
-      </section>
-    </main>
-
-    <footer class="footer luxury-footer">
-      <div class="footer-inner">
-        <div class="footer-brand-block">
-          <div class="footer-monogram" aria-hidden="true">P</div>
-          <div>
-            <strong>PrimeWeb Design</strong><br>
-            <span class="muted">Webdesign aus Rüdesheim am Rhein – für Unternehmen im Rheingau, Hessen & ganz Deutschland</span>
-          </div>
-        </div>
-        <nav class="footer-links" aria-label="Footer-Navigation">
-          <a href="mailto:marc@primeweb-design.de">marc@primeweb-design.de</a>
-          <a href="tel:+4915781774883">+49 157 81774883</a>
-          <a href="#leistungen">Leistungen</a>
-          <a href="#anfrage">Anfrage</a>
-          <a href="#rechtliches">Impressum / Datenschutz / AGB</a>
-          <a href="#" onclick="primeweb.primewebResetCookieConsent(); return false;">Cookie-Einstellungen</a>
-        </nav>
-      </div>
-      <div class="footer-luxury-line" aria-hidden="true">
-        <span>Premium Digital Presence</span>
-        <span>Luxury Webdesign</span>
-        <span>Editorial Brand Ästhetik</span>
-        <span>Lead Workflow Ready</span>
-      </div>
-    </footer>
-  </div>
-
-  <a class="wa-float luxury-whatsapp" href="https://wa.me/4915781774883"
-    aria-label="Kontakt per WhatsApp" rel="noopener noreferrer" target="_blank">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-    <span>WhatsApp schreiben</span>
-  </a>
-
-  <div class="cookie-banner" id="cookieBanner" hidden role="region" aria-label="Cookie-Hinweis">
-    <div class="cookie-text">
-      <strong>🍪 Cookie-Hinweis</strong>
-      Mit „Akzeptieren“ erlaubst du das Laden des Google Tag Managers (Google, ggf. USA). Mit „Nur notwendig“ wird nichts nachgeladen. Details in der <a href="#rechtliches">Datenschutzerklärung</a>; ändern kannst du deine Wahl jederzeit über „Cookie-Einstellungen“ am Seitenende.
     </div>
-    <div class="cookie-actions">
-      <button class="cookie-btn cookie-btn-decline" type="button" id="cookieDecline">Nur notwendig</button>
-      <button class="cookie-btn cookie-btn-accept" type="button" id="cookieAccept">Akzeptieren</button>
-    </div>
-  </div>
-
-  <script src="./primeweb-highend/app.js?v=2"></script>
-  <script>
-    primeweb.primewebHandleContactForm(document.getElementById("contactForm"));
-    primeweb.primewebWireFaqToggles();
-    primeweb.primewebInitCookieBanner();
-    primeweb.primewebInitHeroStageMotion();
-  </script>
-
-  <script>
-    document.querySelectorAll('.luxury-price-item[data-paket]').forEach(function(item) {
-      item.style.cursor = 'pointer';
-      item.addEventListener('click', function() {
-        var paket = this.getAttribute('data-paket');
-        var select = document.getElementById('projectType');
-        if (select) {
-          for (var i = 0; i < select.options.length; i++) {
-            if (select.options[i].text === paket) {
-              select.selectedIndex = i;
-              break;
-            }
-          }
-        }
-        var anfrage = document.getElementById('anfrage');
-        if (anfrage) {
-          anfrage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
-
-  <!-- KI Chat Widget -->
-  <style>
-    #pw-chat-btn {
-      position: fixed; bottom: 80px; right: 28px; z-index: 9999;
-      width: 58px; height: 58px; border-radius: 50%;
-      background: linear-gradient(135deg, #C9A84C, #f0d878);
-      border: none; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(201,168,76,0.5);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.2s;
-    }
-    #pw-chat-btn:hover { transform: scale(1.08); }
-    #pw-chat-btn svg { width: 26px; height: 26px; fill: #0d131a; }
-    #pw-chat-box {
-      position: fixed; bottom: 100px; right: 28px; z-index: 9999;
-      width: 340px; max-height: 480px;
-      background: #fffdf7; border-radius: 18px;
-      border: 1px solid rgba(201,168,76,0.3);
-      border-top: 3px solid #C9A84C;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.18);
-      display: none; flex-direction: column; overflow: hidden;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-    }
-    #pw-chat-box.open { display: flex; }
-    #pw-chat-header {
-      padding: 14px 18px; background: #0d131a;
-      color: #C9A84C; font-weight: 600; font-size: 14px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    #pw-chat-header span { color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 400; }
-    #pw-chat-close { background: none; border: none; color: #C9A84C; cursor: pointer; font-size: 20px; line-height: 1; }
-    #pw-chat-messages {
-      flex: 1; overflow-y: auto; padding: 16px;
-      display: flex; flex-direction: column; gap: 10px;
-    }
-    .pw-msg {
-      max-width: 85%; padding: 10px 14px; border-radius: 14px;
-      font-size: 13px; line-height: 1.5;
-    }
-    .pw-msg.bot {
-      background: #f0ebe0; color: #1a1a1a; align-self: flex-start;
-      border-bottom-left-radius: 4px;
-    }
-    .pw-msg.user {
-      background: #C9A84C; color: #0d131a; align-self: flex-end;
-      border-bottom-right-radius: 4px; font-weight: 500;
-    }
-    .pw-msg.typing { color: #888; font-style: italic; }
-    #pw-chat-input-row {
-      display: flex; padding: 12px; gap: 8px;
-      border-top: 1px solid rgba(201,168,76,0.2);
-    }
-    #pw-chat-input {
-      flex: 1; padding: 9px 12px; border-radius: 20px;
-      border: 1px solid rgba(201,168,76,0.3); background: #fff;
-      font-size: 13px; outline: none; color: #1a1a1a;
-    }
-    #pw-chat-input:focus { border-color: #C9A84C; }
-    #pw-chat-send {
-      background: #C9A84C; border: none; border-radius: 50%;
-      width: 36px; height: 36px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    #pw-chat-send svg { width: 16px; height: 16px; fill: #0d131a; }
-    @media (max-width: 480px) {
-      #pw-chat-box { width: calc(100vw - 20px); right: 10px; left: 10px; bottom: 140px; }
-      #pw-chat-btn { right: 18px; bottom: 80px; width: 52px; height: 52px; }
-    }
-    #pw-sticky-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000;
-      background: #0d131a; border-top: 2px solid #C9A84C;
-      padding: 12px 20px; display: flex; align-items: center;
-      justify-content: center; gap: 16px; flex-wrap: wrap;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      transform: translateY(0); transition: transform 0.3s ease;
-    }
-    #pw-sticky-bar.hidden { transform: translateY(100%); }
-    #pw-sticky-text { color: rgba(248,244,234,0.9); font-size: 14px; }
-    #pw-sticky-text strong { color: #C9A84C; }
-    #pw-sticky-btn {
-      background: linear-gradient(135deg,#C9A84C,#f0d878); color: #0d131a;
-      border-radius: 999px; padding: 8px 20px; font-weight: 800;
-      font-size: 13px; text-decoration: none; white-space: nowrap;
-    }
-    #pw-sticky-close {
-      background: none; border: none; color: rgba(248,244,234,0.4);
-      font-size: 20px; cursor: pointer; line-height: 1; padding: 0 4px;
-    }
-    @media (max-width: 480px) {
-      #pw-sticky-bar { padding: 10px 14px; gap: 10px; }
-      #pw-sticky-text { font-size: 12px; }
-    }
-    #pw-exit-overlay {
-      display: none; position: fixed; inset: 0; z-index: 10000;
-      background: rgba(0,0,0,0.55); align-items: center; justify-content: center;
-    }
-    #pw-exit-overlay.show { display: flex; }
-    #pw-exit-box {
-      background: #0d131a; border-top: 3px solid #C9A84C; border-radius: 18px;
-      padding: 36px 32px; max-width: 420px; width: calc(100% - 40px);
-      text-align: center; color: #f8f4ea;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-    }
-    #pw-exit-box h3 { margin: 0 0 12px; font-size: 22px; color: #C9A84C; }
-    #pw-exit-box p { margin: 0 0 24px; font-size: 15px; line-height: 1.6; color: rgba(248,244,234,0.8); }
-    #pw-exit-box .pw-exit-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    #pw-exit-chat { background: linear-gradient(135deg,#C9A84C,#f0d878); color: #0d131a;
-      border: none; border-radius: 999px; padding: 12px 24px; font-weight: 800;
-      font-size: 14px; cursor: pointer; }
-    #pw-exit-close { background: none; border: 1px solid rgba(201,168,76,0.3);
-      color: rgba(248,244,234,0.6); border-radius: 999px; padding: 12px 24px;
-      font-size: 14px; cursor: pointer; }
-  </style>
-
-  <!-- Sticky CTA Bar -->
-  <div id="pw-sticky-bar">
-    <span id="pw-sticky-text">🕐 Nur noch <strong id="pw-countdown">3</strong> freie Startplätze</span>
-    <a href="#anfrage" id="pw-sticky-btn">Jetzt anfragen</a>
-    <button id="pw-sticky-close" aria-label="Schließen">×</button>
-  </div>
-
-  <div id="pw-exit-overlay">
-    <div id="pw-exit-box">
-      <h3>Warten Sie kurz!</h3>
-      <p>Haben Sie noch Fragen? Marc hilft Ihnen gerne persönlich – kostenlos und unverbindlich.</p>
-      <div class="pw-exit-btns">
-        <button id="pw-exit-chat">Jetzt im Chat fragen</button>
-        <button id="pw-exit-close">Nein danke</button>
+    <div class="foot-line">
+      <span>© 2026 PrimeWeb Design · Marc Daub · Rheinstraße 29 · 65385 Rüdesheim am Rhein</span>
+      <div class="foot-links">
+        <a href="#rechtliches">Impressum</a>
+        <a href="#rechtliches">Datenschutz</a>
+        <a href="#start">Nach oben</a>
       </div>
     </div>
   </div>
-
-  <button id="pw-chat-btn" title="Chat mit uns">
-    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-  </button>
-
-  <div id="pw-chat-box">
-    <div id="pw-chat-header">
-      PrimeWeb Assistent <span>Antwortet sofort</span>
-      <button id="pw-chat-close">&times;</button>
-    </div>
-    <div id="pw-chat-messages"></div>
-    <div id="pw-chat-input-row">
-      <input id="pw-chat-input" type="text" placeholder="Ihre Frage..." maxlength="300" />
-      <button id="pw-chat-send">
-        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-      </button>
-    </div>
-  </div>
-
-  <script>
-    (function() {
-      var CHAT_API = "https://prime-web-design-github-io.vercel.app/api/chat";
-      var LEAD_API = "https://prime-web-design-github-io.vercel.app/api/lead";
-      var history = [];
-      var leadSent = false;
-      var btn = document.getElementById("pw-chat-btn");
-      var box = document.getElementById("pw-chat-box");
-      var closeBtn = document.getElementById("pw-chat-close");
-      var messages = document.getElementById("pw-chat-messages");
-      var input = document.getElementById("pw-chat-input");
-      var send = document.getElementById("pw-chat-send");
-
-      function addMsg(text, role) {
-        var div = document.createElement("div");
-        div.className = "pw-msg " + role;
-        div.textContent = text;
-        messages.appendChild(div);
-        messages.scrollTop = messages.scrollHeight;
-        return div;
-      }
-
-      function extractLead(text) {
-        var match = text.match(/\[LEAD:name=([^,]+),email=([^\]]+)\]/);
-        if (match) return { name: match[1].trim(), email: match[2].trim() };
-        return null;
-      }
-
-      function cleanText(text) {
-        return text.replace(/\[LEAD:[^\]]+\]/g, "").trim();
-      }
-
-      async function sendLead(name, email) {
-        if (leadSent) return;
-        leadSent = true;
-        var context = history.map(function(m) { return m.role + ": " + m.text; }).join("\n");
-        try {
-          await fetch(LEAD_API, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: name, email: email, message: context })
-          });
-        } catch(e) {}
-      }
-
-      function openChat() {
-        box.classList.add("open");
-        if (!messages.children.length) {
-          addMsg("Hallo! Kann ich Ihnen bei der Wahl des richtigen Pakets helfen? Haben Sie bereits eine Website?", "bot");
-        }
-        input.focus();
-      }
-
-      btn.addEventListener("click", openChat);
-      closeBtn.addEventListener("click", function() { box.classList.remove("open"); });
-
-      // Proaktiv nach 30 Sekunden öffnen
-      setTimeout(function() {
-        if (!box.classList.contains("open")) {
-          openChat();
-        }
-      }, 15000);
-
-      async function sendMessage() {
-        var text = input.value.trim();
-        if (!text) return;
-        input.value = "";
-        addMsg(text, "user");
-        var typing = addMsg("...", "bot typing");
-        try {
-          var minDelay = new Promise(function(r) { setTimeout(r, 1500); });
-          var fetchRes = fetch(CHAT_API, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: text, history: history })
-          }).then(function(r) { return r.json(); });
-          var results = await Promise.all([fetchRes, minDelay]);
-          var data = results[0];
-          typing.remove();
-          var lead = extractLead(data.reply);
-          var cleanReply = cleanText(data.reply);
-          addMsg(cleanReply, "bot");
-          if (lead) sendLead(lead.name, lead.email);
-          history.push({ role: "user", text: text });
-          history.push({ role: "model", text: cleanReply });
-          if (history.length > 12) history = history.slice(-12);
-        } catch(e) {
-          typing.textContent = "Entschuldigung, ein Fehler ist aufgetreten.";
-          typing.classList.remove("typing");
-        }
-      }
-
-      send.addEventListener("click", sendMessage);
-      input.addEventListener("keydown", function(e) { if (e.key === "Enter") sendMessage(); });
-    })();
-
-    // Sticky Bar
-    (function() {
-      var bar = document.getElementById("pw-sticky-bar");
-      var closeBtn = document.getElementById("pw-sticky-close");
-      var shown = false;
-
-      // Zeige Bar erst nach 5 Sekunden
-      setTimeout(function() {
-        if (!localStorage.getItem("pw_sticky_closed")) {
-          bar.classList.remove("hidden");
-          shown = true;
-        }
-      }, 5000);
-
-      closeBtn.addEventListener("click", function() {
-        bar.classList.add("hidden");
-        localStorage.setItem("pw_sticky_closed", "1");
-      });
-
-      // Countdown: nächster freier Starttermin (nächster Montag)
-      var next = new Date();
-      next.setDate(next.getDate() + ((8 - next.getDay()) % 7 || 7));
-      var diff = Math.ceil((next - new Date()) / (1000 * 60 * 60 * 24));
-      var el = document.getElementById("pw-countdown");
-      if (el) el.textContent = diff + " Tag" + (diff !== 1 ? "en" : "");
-      document.getElementById("pw-sticky-text").innerHTML =
-        "🕐 Nächster freier Starttermin: in <strong>" + diff + " Tag" + (diff !== 1 ? "en" : "") + "</strong> &nbsp;·&nbsp; Jetzt Platz sichern";
-    })();
-
-    // Exit-Intent
-    (function() {
-      var overlay = document.getElementById("pw-exit-overlay");
-      var exitChat = document.getElementById("pw-exit-chat");
-      var exitClose = document.getElementById("pw-exit-close");
-      var shown = false;
-
-      document.addEventListener("mouseleave", function(e) {
-        if (shown || e.clientY > 10) return;
-        shown = true;
-        overlay.classList.add("show");
-      });
-
-      exitClose.addEventListener("click", function() {
-        overlay.classList.remove("show");
-      });
-
-      exitChat.addEventListener("click", function() {
-        overlay.classList.remove("show");
-        var box = document.getElementById("pw-chat-box");
-        if (!box.classList.contains("open")) {
-          document.getElementById("pw-chat-btn").click();
-        }
-      });
-
-      overlay.addEventListener("click", function(e) {
-        if (e.target === overlay) overlay.classList.remove("show");
-      });
-    })();
-  </script>
+</footer>
 </body>
 </html>
