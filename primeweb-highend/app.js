@@ -274,6 +274,53 @@
     });
   }
 
+
+  /* ---------- Cookie-Banner: Google Tag Manager nur nach Einwilligung ---------- */
+  const CONSENT_KEY = 'pw_consent'; // "ja" | "nein"
+  const GTM_ID = 'GTM-N4ML7QKC';
+  const banner = document.getElementById('cookieBanner');
+  const readConsent = () => { try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; } };
+  const writeConsent = (v) => { try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {} };
+  function loadGtm() {
+    if (window.pwGtmLoaded) return;
+    window.pwGtmLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  }
+  function showBanner() {
+    if (!banner) return;
+    banner.hidden = false;
+    requestAnimationFrame(() => banner.classList.add('is-visible'));
+  }
+  function hideBanner() {
+    if (!banner) return;
+    banner.classList.remove('is-visible');
+    setTimeout(() => { banner.hidden = true; }, 450);
+  }
+  if (banner) {
+    const vorher = readConsent();
+    if (vorher === 'ja') loadGtm();
+    else if (vorher !== 'nein') setTimeout(showBanner, 900);
+    document.getElementById('cookieAccept').addEventListener('click', () => { writeConsent('ja'); hideBanner(); loadGtm(); });
+    document.getElementById('cookieDecline').addEventListener('click', () => {
+      const warJa = readConsent() === 'ja';
+      writeConsent('nein'); hideBanner();
+      if (warJa) location.reload(); // bereits geladene Google-Skripte beenden
+    });
+    const settings = document.getElementById('cookieSettings');
+    if (settings) settings.addEventListener('click', (e) => { e.preventDefault(); showBanner(); });
+    banner.querySelectorAll('[data-open-legal]').forEach(a => a.addEventListener('click', () => {
+      const d = document.getElementById(a.getAttribute('data-open-legal'));
+      if (d && 'open' in d) d.open = true;
+    }));
+  }
+
   /* ---------- Formular (01) ---------- */
   const form = document.getElementById('lead-form');
   const status = document.getElementById('form-status');

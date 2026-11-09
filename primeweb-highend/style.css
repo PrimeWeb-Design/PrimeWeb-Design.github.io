@@ -960,3 +960,25 @@ html.no-anim .process-line, html.no-js .process-line { transform: scaleY(1); }
   .parallax > img { transform: none !important; }
   .laptop-stage { --open: 0deg; --rise: 1; }
 }
+
+/* ---------- Cookie-Banner ---------- */
+.cookie {
+  position: fixed; left: 50%; bottom: 18px; z-index: 90;
+  width: min(100% - 24px, 640px); transform: translate(-50%, 24px); opacity: 0;
+  transition: opacity 0.4s var(--ease), transform 0.5s var(--ease);
+}
+.cookie.is-visible { opacity: 1; transform: translate(-50%, 0); }
+.cookie__inner {
+  padding: 22px 24px; border: 1px solid var(--gold-line); border-radius: 18px;
+  background: rgba(13, 18, 26, 0.96); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.cookie__title { margin: 0 0 8px; font-family: var(--display); font-size: 1.5rem; line-height: 1.1; color: var(--text); }
+.cookie__text { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.6; max-width: none; }
+.cookie__text a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+.cookie__actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+.cookie__actions .btn { min-height: 46px; }
+@media (max-width: 560px) {
+  .cookie { bottom: 10px; }
+  .cookie__inner { padding: 18px; border-radius: 14px; }
+  .cookie__actions .btn { flex: 1 1 45%; }
+}
